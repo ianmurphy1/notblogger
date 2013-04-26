@@ -25,4 +25,12 @@ public class Post extends Model {
 		this.content = content;
 		this.comments = new ArrayList<Comment>();
 	}
+	
+	public void addComment(Comment comment) {
+		comments.add(comment);
+	}
+	
+	public String toString() {
+		return title;
+	}
 }

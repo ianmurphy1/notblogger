@@ -9,6 +9,6 @@ import models.*;
 
 public class Start extends Controller {
 	public static void index() {
-		render();
+		render();		
 	}
 }
