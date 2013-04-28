@@ -29,5 +29,18 @@ public class UserTest extends UnitTest {
 	public void testCreate() {
 		User a = User.findByName("Mike");
 		assertNotNull(a);
+		assertEquals("Mike", a.firstName);
+		User b = User.findByName("Jim");
+		assertNotNull(b);
+		assertEquals("Jim", b.firstName);
+		User c = User.findByName("Frank");
+		assertNotNull(c);
+		assertEquals("Frank", c.firstName);
+	}
+	
+	@Test
+	public void notCreated() {
+		User d = User.findByName("Dave");
+		assertNull(d);
 	}
 }
