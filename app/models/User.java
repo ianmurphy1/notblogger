@@ -30,7 +30,7 @@ public class User extends Model {
 		this.age = age;		
 		this.email = email;
 		this.password = password;
-		blogs = new ArrayList<Blog>();
+		this.blogs = new ArrayList<Blog>();
 	}
 	
 	public void addBlog(Blog blog) {
@@ -39,6 +39,10 @@ public class User extends Model {
 	
 	public boolean checkPassword(String password) {
 		return this.password.equals(password);
+	}
+	
+	public static User findByName(String name) {
+		return find("firstName", name).first();
 	}
 	
 	public String toString() {
