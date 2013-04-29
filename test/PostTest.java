@@ -20,11 +20,9 @@ public class PostTest extends UnitTest {
 	
 	@Before
 	public void setup() {
-		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");
-		bob.save();
+		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");		
 		blogA = new Blog("Blog1", true);
-		bob.addBlog(blogA);
-		
+		bob.addBlog(blogA);		
 		bob.save();		
 	}
 	
@@ -32,7 +30,8 @@ public class PostTest extends UnitTest {
 	public void teardown() {
 		blogA.posts.clear();		
 		bob.blogs.clear();
-		bob.delete();		
+		bob.delete();
+		blogA.delete();
 	}
 	
 	@Test

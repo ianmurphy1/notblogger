@@ -1,8 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Blog;
+import models.Comment;
+import models.Post;
+import models.User;
+
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import models.User;
-import play.mvc.After;
+import play.test.Fixtures;
 import play.test.UnitTest;
 
 public class UserTest extends UnitTest {
