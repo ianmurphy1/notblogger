@@ -33,6 +33,10 @@ public class Post extends Model {
 		comments.add(comment);
 	}
 	
+	public void removeComment(Comment comment) {
+		comments.remove(comment);
+	}
+	
 	public String toString() {
 		return title;
 	}

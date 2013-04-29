@@ -79,4 +79,28 @@ public class PostTest extends UnitTest {
 		assertEquals("Post2", postb.title);
 		assertEquals("This is post 2.", postb.content);
 	}
+	
+	@Test
+	public void testRemovePost() {
+		Post postA = new Post("Post1", "This is post 1.");
+		blogA.addPost(postA);
+		Post postB = new Post("Post2", "This is post 2.");
+		blogA.addPost(postB);
+		blogA.save();
+		bob.save();
+		
+		User user = User.findByEmail("bob@gmail.com");
+		Blog aBlog = user.blogs.get(0);
+		assertEquals(2, aBlog.posts.size());	
+		
+		aBlog.removePost(postA);			
+		aBlog.save();
+		postA.delete();
+		
+		User secondUser = User.findByEmail("bob@gmail.com");
+		Blog secondBlog = secondUser.blogs.get(0);
+		List<Post> posts = secondBlog.posts;
+		Post aPost = posts.get(0);
+		assertEquals("Post2", aPost.title);		
+	}
 }

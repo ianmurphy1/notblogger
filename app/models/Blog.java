@@ -28,6 +28,10 @@ public class Blog extends Model {
 		posts.add(post);
 	}
 	
+	public void removePost(Post post) {
+		posts.remove(post);
+	}
+	
 	public String toString() {
 		return name;
 	}

@@ -62,7 +62,31 @@ public class BlogTest extends UnitTest {
 		
 		Blog blogb = blogs.get(1);
 		assertEquals("Blog2", blogb.name);
-		assertFalse(blogb.isPublic);
+		assertFalse(blogb.isPublic);		
+	}
+	
+	@Test
+	public void testRemoveBlog() {
+		Blog blogA = new Blog("Blog1", true);
+		Blog blogB = new Blog("Blog2", false);
 		
+		bob.addBlog(blogA);
+		bob.addBlog(blogB);
+		bob.save();
+		
+		User user = User.findByEmail("bob@gmail.com");
+		List<Blog> blogs = user.blogs;
+		assertEquals(2, blogs.size());
+		
+		user.removeBlog(blogA);
+		user.save();
+		blogA.delete();
+		
+		
+		User anotherUser = User.findByEmail("bob@gmail.com");
+		List<Blog> otherBlogs = anotherUser.blogs;
+		assertEquals(1, otherBlogs.size());
+		Blog blog = otherBlogs.get(0);
+		assertEquals("Blog2", blog.name);		
 	}
 }

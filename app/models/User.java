@@ -43,6 +43,10 @@ public class User extends Model {
 		this.blogs.add(blog);
 	}
 	
+	public void removeBlog(Blog blog) {
+		this.blogs.remove(blog);
+	}
+	
 	public boolean checkPassword(String password) {
 		return this.password.equals(password);
 	}
