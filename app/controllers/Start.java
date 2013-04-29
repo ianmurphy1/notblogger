@@ -11,4 +11,12 @@ public class Start extends Controller {
 	public static void index() {		
 		render();		
 	}
+	
+	public static void login() {
+		render();
+	}
+	
+	public static void signup() {
+		render();
+	}
 }

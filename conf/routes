@@ -6,7 +6,13 @@
 *      /admin              module:crud
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       Start.index
+GET     /login                                  Start.login
+GET     /signup                                 Start.signup
+
+
+
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
