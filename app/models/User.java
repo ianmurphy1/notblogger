@@ -34,11 +34,15 @@ public class User extends Model {
 	}
 	
 	public void addBlog(Blog blog) {
-		blogs.add(blog);
+		this.blogs.add(blog);
 	}
 	
 	public boolean checkPassword(String password) {
 		return this.password.equals(password);
+	}
+	
+	public static User findByEmail(String email) {
+		return find("email", email).first();
 	}
 	
 	public static User findByName(String name) {

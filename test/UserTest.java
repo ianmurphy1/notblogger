@@ -10,7 +10,7 @@ public class UserTest extends UnitTest {
 
 	@Before
 	public void setup() {
-		u1 = new User("Mike", "Jones", 18, "mike@gmail.com", "secret");
+		u1 = new User("Mick", "Jones", 18, "mike@gmail.com", "secret");
 		u2 = new User("Jim", "Jacob", 25, "jim@gmail.com", "secret");
 		u3 = new User("Frank", "Stapleton", 34, "frank@gmail.com", "secret");
 		u1.save();
@@ -27,9 +27,9 @@ public class UserTest extends UnitTest {
 	
 	@Test
 	public void testCreate() {
-		User a = User.findByName("Mike");
+		User a = User.findByName("Mick");
 		assertNotNull(a);
-		assertEquals("Mike", a.firstName);
+		assertEquals("Mick", a.firstName);
 		User b = User.findByName("Jim");
 		assertNotNull(b);
 		assertEquals("Jim", b.firstName);

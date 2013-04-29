@@ -11,6 +11,7 @@ import play.db.jpa.Model;
 
 @Entity
 public class Blog extends Model {
+	
 	public String name;
 	public boolean isPublic;
 	
