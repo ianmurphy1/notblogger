@@ -9,7 +9,21 @@ import models.*;
 
 public class Start extends Controller {
 	public static void index() {
-		render();
+		
+		List<User> users = User.findAll();
+				
+		List<Blog> publicBlogs = new ArrayList<Blog>();		
+		for (User user: users) {			
+			
+			List<Blog> blogs = user.blogs;
+			
+			for (Blog blog: blogs) {
+				if (blog.isPublic) {
+					publicBlogs.add(blog);
+				}
+			}			
+		}		
+		render(publicBlogs);
 	}
 
 	public static void login() {

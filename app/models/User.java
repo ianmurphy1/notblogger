@@ -1,5 +1,10 @@
 package models;
 
+import javax.persistence.Entity;
+
+import play.db.jpa.Blob;
+import play.db.jpa.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -9,9 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-import play.db.jpa.Blob;
-import play.db.jpa.Model;
 
 @Entity
 public class User extends Model {

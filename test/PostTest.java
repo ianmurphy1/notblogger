@@ -21,7 +21,7 @@ public class PostTest extends UnitTest {
 	@Before
 	public void setup() {
 		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");		
-		blogA = new Blog("Blog1", true);
+		blogA = new Blog("Blog1", bob, true);
 		bob.addBlog(blogA);		
 		bob.save();		
 	}

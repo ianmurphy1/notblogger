@@ -1,13 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-  <h1>Welcome To Not Blogger</h1>
-  
-  <a href="/login">Login</a>
-  <a href="/signup">Sign Up</a>
-</body>
-</html>
+#{extends 'main.html' /}
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">NotBlogger</a>
+      <div class="navbar-content">
+        <ul class="nav"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="hero-unit hidden-phone">
+    <h1>Welcome to Not Blogger</h1>
+    <p>Read amazing blogs. Sign Up to create your own.</p>
+    <p></p>
+    <p>
+      <a class="btn btn-inverse btn-large" href="/signup"><span class="btn-label">Sign Up Today!</span></a>
+      <a class="btn btn-primary btn-large" href="/login">Sign In</a> 
+    </p>
+  </div> 
+  #{if publicBlogs.size() > 0} 
+  <h3>Public Blogs</h3>
+  #{list items:publicBlogs, as:'blog'}
+      <h4>
+        <a href="#"> ${blog.author.firstName}'s ${blog.name} Blog </a> 
+      </h4> 
+      <hr>
+    #{/list}  
+    #{/if}
+</div>

@@ -32,7 +32,7 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testCreateBlog() {
-		Blog aBlog = new Blog("Blog1", false);
+		Blog aBlog = new Blog("Blog1", bob, false);
 		bob.addBlog(aBlog);
 		bob.save();
 		
@@ -45,8 +45,8 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testCreateMultipleBlogs() {
-		Blog blogA = new Blog("Blog1", true);
-		Blog blogB = new Blog("Blog2", false);
+		Blog blogA = new Blog("Blog1", bob, true);
+		Blog blogB = new Blog("Blog2", bob, false);
 		
 		bob.addBlog(blogA);
 		bob.addBlog(blogB);
@@ -67,8 +67,8 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testRemoveBlog() {
-		Blog blogA = new Blog("Blog1", true);
-		Blog blogB = new Blog("Blog2", false);
+		Blog blogA = new Blog("Blog1",bob, true);
+		Blog blogB = new Blog("Blog2", bob, false);
 		
 		bob.addBlog(blogA);
 		bob.addBlog(blogB);
