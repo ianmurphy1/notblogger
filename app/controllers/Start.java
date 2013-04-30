@@ -13,10 +13,8 @@ public class Start extends Controller {
 		List<User> users = User.findAll();
 				
 		List<Blog> publicBlogs = new ArrayList<Blog>();		
-		for (User user: users) {			
-			
-			List<Blog> blogs = user.blogs;
-			
+		for (User user: users) {
+			List<Blog> blogs = user.blogs;			
 			for (Blog blog: blogs) {
 				if (blog.isPublic) {
 					publicBlogs.add(blog);
