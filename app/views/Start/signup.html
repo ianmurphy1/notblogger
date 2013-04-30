@@ -1,10 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-    <h2>SignUp with this one!!</h2>
-</body>
-</html>
+#{extends 'main.html' /}
+#{set title:'Sign Up to NotBlogger' /}
+#{include 'nav/open.html' /}
+<li>
+            <a href="/">Home</a> 
+          </li>
+          <li>
+            <a href="/login">Login</a> 
+          </li>
+          <li class="active">
+            <a href="/signup">Signup</a> 
+          </li>
+        </ul>
+#{include 'nav/close.html' /}
+
+<div class="hero-unit hidden-phone span4">
+    <h1>Sign Up to NotBlogger</h1>
+    <form method="post" action="/register">
+      <hr>
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label">Email</label>
+          <div class="controls">
+            <input class="input-block-level" type="text" name="email" id="email" placeholder="Enter Email Address"> 
+          </div>
+        </div>
+        <label class="control-label">First Name</label>
+        <div class="controls">
+          <input class="input-block-level" type="text" name="firstName" id="firstName"
+          placeholder="Enter First Name"> 
+        </div>
+        <label class="control-label">Last Name</label>
+        <div class="controls">
+          <input class="input-block-level" type="text" name="lastName" id="lastName"
+          placeholder="Enter Last Name"> 
+        </div>
+        <label class="control-label">Age</label>
+        <div class="controls">
+          <input class="input-block-level" type="number" name="age" id="age" placeholder="Enter Age"> 
+        </div>
+        <label class="control-label">Nationality</label>
+        <div class="controls">
+          <input class="input-block-level" type="text" name="nationality" id="nationality"
+          placeholder="Enter Nationality"> 
+        </div>
+        <label class="control-label">Password</label>
+        <div class="controls">
+          <span class="help-inline">Enter Your Desired Password Twice</span>
+          <input class="input-block-level" type="password" name="password" id="password"
+          placeholder="Enter Password">
+          <br>
+          <input class="input-block-level" type="password" name="password2" id="password2"
+          placeholder="Verify Password">
+          <br>
+          <br> 
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="Sign Up"> 
+      </div>
+    </form>
+  </div> 

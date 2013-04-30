@@ -1,14 +1,19 @@
 #{extends 'main.html' /}
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="#">NotBlogger</a>
-      <div class="navbar-content">
-        <ul class="nav"></ul>
-      </div>
-    </div>
-  </div>
-</div>
+#{include 'nav/open.html' /}
+#{set title:'Welcome To NotBlogger' /}
+
+<li class="active">
+            <a href="/">Home</a> 
+          </li>
+          <li>
+            <a href="/login">Login</a> 
+          </li>
+          <li>
+            <a href="/signup">Signup</a> 
+          </li>
+        </ul>
+#{include 'nav/close.html' /}
+      
 
 <div class="container">
   <div class="hero-unit hidden-phone">
