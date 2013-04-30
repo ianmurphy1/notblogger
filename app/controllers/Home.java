@@ -18,7 +18,9 @@ public class Home extends Controller {
 		List<Blog> reverseBlogs = new ArrayList<Blog>(user.blogs);
 		Collections.reverse(reverseBlogs);
 		
-		render(user, reverseBlogs);
+		List<User> users = User.findAll();
+		
+		render(user, reverseBlogs, users);
 	}
 	
 	public static void createBlog(String name, boolean isPublic) {
