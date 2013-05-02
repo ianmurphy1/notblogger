@@ -28,7 +28,7 @@ public class CommentTest extends UnitTest {
 		blogA = new Blog("Blog1", author, true);		
 		bob.addBlog(blogA);
 		
-		postA = new Post("Title1", "Post 1 content");		
+		postA = new Post("Title1", "Post 1 content", author);		
 		blogA.addPost(postA);
 		
 		bob.save();		

@@ -12,11 +12,11 @@ public class HomeProfile extends Controller {
 		render(user);
 	}
 
-	public static void changeText(String profiletext) {
+	public static void changeMessage(String message) {
 		User user = Start.getLoggedInUser();
-		user.visitorMessage = profiletext;
+		user.visitorMessage = message;
 		user.save();
-		Logger.info("Visitor " + profiletext);
+		Logger.info("Visitor " + message);
 		index();
 	}
 

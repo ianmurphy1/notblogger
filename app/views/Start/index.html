@@ -2,20 +2,14 @@
 #{include 'nav/open.html' /}
 #{set title:'Welcome To NotBlogger' /}
 
-<li class="active">
-            <a href="/">Home</a> 
-          </li>
-          <li>
-            <a href="/login">Login</a> 
-          </li>
-          <li>
-            <a href="/signup">Signup</a> 
-          </li>
-        </ul>
+<li class="active"><a href="/">Main</a></li>
+<li><a href="/login">Login</a></li>
+<li><a href="/signup">Signup</a></li>
+</ul>
 #{include 'nav/close.html' /}
-      
+    
 
-<div class="container">
+
   <div class="hero-unit hidden-phone">
     <h1>Welcome to Not Blogger</h1>
     <p>Read amazing blogs. Sign Up to create your own.</p>
@@ -25,13 +19,21 @@
       <a class="btn btn-primary btn-large" href="/login">Sign In</a> 
     </p>
   </div> 
-  #{if publicBlogs.size() > 0} 
+  
+  <div class="row well span5">
+  #{if showThese.size() > 0} 
   <h3>Public Blogs</h3>
-  #{list items:publicBlogs, as:'blog'}
+  #{list items:showThese, as:'blog'}
       <h4>
-        <a href="#"> ${blog.author.firstName}'s ${blog.name} Blog </a> 
+        <a href="@{PublicBlog.show(blog.id)}"> ${blog.author}'s ${blog.name} Blog </a> 
       </h4> 
       <hr>
     #{/list}  
     #{/if}
-</div>
+    #{else}
+      <p>
+        There are no posts on NotBlogger yet!
+      </p>    
+    #{/else}
+    </div>
+

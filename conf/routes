@@ -9,6 +9,7 @@
 GET     /                                       Start.index
 GET     /login                                  Start.login
 GET     /signup                                 Start.signup
+GET     /logout                                 Start.logout
 POST    /register                               Start.register
 POST    /authenticate                           Start.authenticate
 
@@ -16,6 +17,21 @@ POST    /authenticate                           Start.authenticate
 GET     /home                                   Home.index
 POST    /home/createblog                        Home.createBlog
 
+# Profile Page
+GET     /homeprofile                            HomeProfile.index
+POST    /homeprofile/changemessage              HomeProfile.changeMessage
+POST    /homeprofile/uppicture/{id}             HomeProfile.uploadPicture
+GET     /homeprofile/getpicture/{id}            HomeProfile.getPicture
+POST    /homeprofile/upavatar/{id}              Homeprofile.uploadAvatar
+GET     /homeprofile/getAvatar/{id}             HomeProfile.getAvatar                   
+   
+
+# Edit Profile
+GET     /editprofile                            EditProfile.index
+POST    /editprofile/changeemail/{id}           EditProfile.changeEmail
+POST    /editprofile/changename/{id}            EditProfile.changeName
+POST    /editprofile/changeage/{id}             EditProfile.changeAge
+POST    /editprofile/changepassword/{id}        EditProfile.changePassword
 
 
 # Ignore favicon requests

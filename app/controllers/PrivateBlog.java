@@ -10,43 +10,29 @@ import models.User;
 import play.Logger;
 import play.mvc.Controller;
 
-public class PublicBlog extends Controller {
-
-	public static void show(Long blogid) {		
+public class PrivateBlog extends Controller {
+	
+	public static void show(Long id, Long blogid) {
+		User user = User.findById(id);
 		Blog blog = Blog.findById(blogid);
 
 		List<Post> posts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(posts);
 		
-		render(blog, posts);
+		render(user, posts, blog);
 	}
 	
 	public static void newPost(String title, String content, Long blogid) {
 		User user = Start.getLoggedInUser();
 		String author = user.firstName;
+		Blog blog = Blog.findById(blogid);	
 		
-		Blog blog = Blog.findById(blogid);		
 		
 		Post post = new Post(title, content, author);
 		blog.addPost(post);
-		blog.save();
 		user.save();
 		
 		Logger.info("title: " + title + " content: " + content);
-		Home.index();
-	}
-	
-	public static void deletePost(Long postid, Long blogid) {
-		User user = Start.getLoggedInUser();
-		
-		Blog blog = Blog.findById(blogid);
-		
-		Post post = Post.findById(postid);
-		blog.posts.remove(post);
-		
-		user.save();
-		post.delete();
-		
 		Home.index();
 	}
 	
@@ -66,6 +52,3 @@ public class PublicBlog extends Controller {
 		render(user, loggedInUser, reversePosts);
 	}
 }
-
-
-

@@ -1,0 +1,14 @@
+#{extends 'main.html' /} 
+#{set title:"Blog Post: ${post.title}" /} 
+#{include 'nav/open.html' /}
+</ul>
+#{include 'nav/close.html' /}
+
+ <h4>${post.title}</h4>
+    <p class="date">
+      ${post.postedAt.format('dd MMM yy')}<br> At
+      ${post.postedAt.format('hh:mm')} By ${post.author}
+    </p>
+
+    <p>${post.content}</p>
+    <hr>

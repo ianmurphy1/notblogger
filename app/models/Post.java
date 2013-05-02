@@ -14,6 +14,7 @@ import play.db.jpa.Model;
 @Entity
 public class Post extends Model {
 	public String title;
+	public String author;
 	public Date postedAt;
 	
 	@Lob
@@ -22,9 +23,10 @@ public class Post extends Model {
 	@OneToMany (cascade = CascadeType.ALL)
 	public List<Comment> comments;
 	
-	public Post(String title, String content) {
+	public Post(String title, String content, String author) {
 		this.title = title;
 		this.content = content;
+		this.author = author;
 		this.postedAt = new Date();
 		this.comments = new ArrayList<Comment>();
 	}

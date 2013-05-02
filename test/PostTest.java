@@ -37,7 +37,8 @@ public class PostTest extends UnitTest {
 	
 	@Test
 	public void createPost() {
-		Post aPost = new Post("Post1", "This is content.");
+		String author = bob.firstName;
+		Post aPost = new Post("Post1", "This is content.", author);
 		blogA.addPost(aPost);
 		blogA.save();
 		bob.save();
@@ -55,12 +56,13 @@ public class PostTest extends UnitTest {
 	
 	@Test
 	public void createMultiplePosts() {
-		Post postA = new Post("Post1", "This is post 1.");
+		String author = bob.firstName;
+		Post postA = new Post("Post1", "This is post 1.", author);
 		blogA.addPost(postA);
 		blogA.save();
 		bob.save();
 		
-		Post postB = new Post("Post2", "This is post 2.");
+		Post postB = new Post("Post2", "This is post 2.", author);
 		blogA.addPost(postB);
 		blogA.save();
 		bob.save();
@@ -82,9 +84,10 @@ public class PostTest extends UnitTest {
 	
 	@Test
 	public void testRemovePost() {
-		Post postA = new Post("Post1", "This is post 1.");
+		String author = bob.firstName;
+		Post postA = new Post("Post1", "This is post 1.", author);
 		blogA.addPost(postA);
-		Post postB = new Post("Post2", "This is post 2.");
+		Post postB = new Post("Post2", "This is post 2.", author);
 		blogA.addPost(postB);
 		blogA.save();
 		bob.save();

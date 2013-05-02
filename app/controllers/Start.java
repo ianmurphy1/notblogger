@@ -20,12 +20,27 @@ public class Start extends Controller {
 					publicBlogs.add(blog);
 				}
 			}			
-		}		
-		render(publicBlogs);
+		}
+		
+		//Takes list and shuffles them
+		List<Blog> showThese = new ArrayList<Blog>(publicBlogs);
+		Collections.shuffle(showThese);
+		
+		//If the list is bigger than 10 it'll take the first 10 of the list
+		if (showThese.size() > 10) {
+			showThese = showThese.subList(0, 11);
+		}
+		
+		render(showThese);
 	}
 
 	public static void login() {
 		render();
+	}
+	
+	public static void logout() {
+		session.clear();
+	    index();
 	}
 
 	public static void signup() {

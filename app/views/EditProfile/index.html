@@ -1,0 +1,110 @@
+#{extends 'main.html' /}
+#{set title:'Profile Settings' /}
+#{include 'nav/open.html' /}
+        
+<li><a href="/home"> Home </a></li>
+<li><a href="/readinglist"> Reading List </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+
+</ul>
+
+<div class="btn-group pull-right">
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <ul class="dropdown-menu pull-right">
+    <li><a href="/editprofile"> Edit Profile </a></li>
+    <li><a href="/logout"> Logout </a></li>
+  </ul>
+</div>                    
+#{include 'nav/close.html' /}
+
+<div class="row">
+  <form class="well span4" method="post" action="editprofile/changename/${user.id}">
+    <fieldset>
+      <legend>Edit Name</legend>
+      <div class="control-group">
+        <label class="control-label">First Name</label>
+        <div class="controls">
+          <input type="text" name="firstName" id="firstname" placeholder="Enter New First Name" />
+        </div>
+        <label class="control-label">Last Name</label>
+        <div class="controls">
+          <input type="text" name="lastName" id="lastname" placeholder="Enter New Last Name" />
+        </div>
+      </div>
+      <label class="control-label">Password</label>
+      <div class="controls">
+        <input type="password" name="password" id="password" placeholder="Enter Password" /><br />
+      </div>
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="Update Name" />
+      </div>
+    </fieldset>
+  </form>
+
+  <form class="form well span4" method="post"
+    action="editprofile/changeage/${user.id}">
+    <fieldset>
+      <legend>Edit Age</legend>
+      <div class="control-group">
+        <label class="control-label">Age</label>
+        <div class="controls">
+          <input type="text" name="age" id="age" placeholder="Age" />
+        </div>
+      </div>
+      <div class="control-label">Password</div>
+      <div class="controls">
+        <input type="password" name="password" id="password" placeholder="Enter Password" /><br />
+      </div>
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit" value="Update Age" />
+      </div>
+    </fieldset>
+  </form></div>
+ 
+<div class="row">
+  <form class="form well span4" method="post"
+    action="editprofile/changeemail/${user.id}">
+    <fieldset>
+      <legend>Edit Email Address</legend>
+      <div class="control-group">
+        <label class="control-label">Email Address</label>
+        <div class="controls">
+          <input type="text" name="email" id="email" placeholder="Enter New Email" />
+        </div>
+      </div>
+      <div class="control-label">Password</div>
+      <div class="controls">
+        <input type="password" name="password" id="password" placeholder="Enter Password" /><br />
+      </div>
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit"
+          value="Update Email" />
+      </div>
+    </fieldset>
+  </form>
+
+
+
+  <form class="form well span4" method="post"
+    action="editprofile/changepassword/${user.id}">
+    <fieldset>
+      <legend>Edit Password</legend>
+      <div class="control-group">
+        <label class="control-label">New Password</label>
+        <div class="controls">
+          <input type="text" name="password" id="password"
+            placeholder="Enter New Password" />
+        </div>
+      </div>
+      <div class="control-label">Old Password</div>
+      <div class="controls">
+        <input type="password" name="oldpassword" id="oldpassword"
+          placeholder="Enter Old Password" /><br />
+      </div>
+      <div class="form-actions">
+        <input class="btn btn-primary" type="submit"
+          value="Update Password" />
+      </div>
+    </fieldset>
+  </form>
+</div>
