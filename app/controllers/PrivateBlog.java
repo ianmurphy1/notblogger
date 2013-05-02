@@ -12,19 +12,20 @@ import play.mvc.Controller;
 
 public class PrivateBlog extends Controller {
 	
-	public static void show(Long id, Long blogid) {
-		User user = User.findById(id);
+	public static void show(Long blogid) {
+		
 		Blog blog = Blog.findById(blogid);
 
 		List<Post> posts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(posts);
 		
-		render(user, posts, blog);
+		render(posts, blog);
 	}
 	
 	public static void newPost(String title, String content, Long blogid) {
 		User user = Start.getLoggedInUser();
 		String author = user.firstName;
+		
 		Blog blog = Blog.findById(blogid);	
 		
 		
@@ -33,7 +34,7 @@ public class PrivateBlog extends Controller {
 		user.save();
 		
 		Logger.info("title: " + title + " content: " + content);
-		Home.index();
+		show(blogid);
 	}
 	
 	public static void visit(Long userid, Long blogid) {

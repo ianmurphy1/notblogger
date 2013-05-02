@@ -4,11 +4,35 @@
 </ul>
 #{include 'nav/close.html' /}
 
- <h4>${post.title}</h4>
+ <div class="row">
+  <div class="well span8">
+    <h4>${post.title}</h4>
     <p class="date">
       ${post.postedAt.format('dd MMM yy')}<br> At
-      ${post.postedAt.format('hh:mm')} By ${post.author}
+      ${post.postedAt.format('hh:mm')} By <a href="/userprofile/visit/${user.id}">${post.author}</a>
     </p>
 
     <p>${post.content}</p>
     <hr>
+    <a href="@{PublicBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
+    <hr>
+    <h5>Comments</h5>
+    #{if post.comments.size() > 0} 
+      #{list items:post.comments, as:'comment'}
+        <p>${comment.content}</p>
+        <p class="date">
+          Left By ${comment.author}<br> ${comment.postedAt.since()}
+        </p>
+        <a href="@{BlogPost.deleteComment(post.id, comment.id)}" class="btn btn-mini">Delete</a>
+        <hr>
+      #{/list} 
+    #{/if}
+    #{else} 
+      No comments yet. 
+    #{/else}
+  </div>
+  
+  
+    
+  
+</div>

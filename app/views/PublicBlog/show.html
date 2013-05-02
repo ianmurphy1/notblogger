@@ -13,11 +13,11 @@
 
 <div class="row-fluid">
   #{if posts.size > 0}
-  <div id ="content" class="well span5">
+  <div id ="content" class="well span8">
     <h3>Blog Posts</h3>
     #{list items:blog.posts, as:'post'}
     <h4>
-      <a href="@{PublicBlogPost.show(post.id)}"> ${post.title} </a></br>
+      <a href="@{PublicBlogPost.show(blog.id, post.id)}"> ${post.title} </a></br>
     </h4>
     <p class="date">On ${post.postedAt.format('dd MMM yy')} at
       ${post.postedAt.format('hh:mm')}</p>
@@ -29,19 +29,17 @@
   #{/if} #{else}
   <p>To add a post to ${blog.name} click the button bellow</p>
   #{/else}
-  <p>
-    <button id="showPostCreator" class="btn btn-primary" type="button">Create Post</button><br>
-  </p>
+  
 </div>
 
 <div id="createpost" class="row-fluid">
-  <form id="newpost" class="form well span5" method="post" action="@{PublicBlog.newPost(title, content, blog.id)}">
+  <form id="newpost" class="form well span7" method="post" action="@{PublicBlog.newPost(posttitle, content, blog.id)}">
     <fieldset>
-      <legend>Create New Blog</legend>
+      <legend>Create New Post</legend>
       <div class="control-groweup">
         <label class="control-label">Title</label><br>
         <div class="controls">
-          <textarea name="title" class="field span11" rows="1"
+          <textarea name="posttitle" class="field span11" rows="1"
             placeholder="Blog Title..."></textarea>
         </div>
       </div>
@@ -60,7 +58,9 @@
     </fieldset>
   </form>
 </div>
-
+<p>
+    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+  </p>
 <a href="/home" class="btn btn-success">Back Home</a>
 
 <script src="@{'/public/javascripts/blogger.js'}"></script>

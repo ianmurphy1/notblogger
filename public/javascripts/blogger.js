@@ -7,10 +7,12 @@ hideBlogCreator = function(event) {
 }
 
 showPostCreator = function(event) {
+	$("#content").hide("slowly");
 	$("#createpost").show("slowly");
 } 
 
 hidePostCreator = function(event) {
+	$("#content").show("slowly");
 	$("#createpost").hide("slowly");
 }
 

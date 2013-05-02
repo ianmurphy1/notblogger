@@ -1,3 +1,11 @@
 .navbar-text {
   padding-right: 9px;
 }
+
+p.postbutton {
+	padding-left: 9px;
+}
+
+.date {
+	font-size: 80%;
+}

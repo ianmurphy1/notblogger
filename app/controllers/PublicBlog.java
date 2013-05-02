@@ -21,19 +21,19 @@ public class PublicBlog extends Controller {
 		render(blog, posts);
 	}
 	
-	public static void newPost(String title, String content, Long blogid) {
+	public static void newPost(String posttitle, String content, Long blogid) {
 		User user = Start.getLoggedInUser();
 		String author = user.firstName;
 		
 		Blog blog = Blog.findById(blogid);		
 		
-		Post post = new Post(title, content, author);
+		Post post = new Post(posttitle, content, author);
 		blog.addPost(post);
 		blog.save();
 		user.save();
 		
-		Logger.info("title: " + title + " content: " + content);
-		Home.index();
+		Logger.info("title: " + posttitle + " content: " + content);
+		show(blog.id);
 	}
 	
 	public static void deletePost(Long postid, Long blogid) {

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Blog;
 import models.Comment;
 import models.Post;
 import models.User;
@@ -7,15 +8,17 @@ import play.Logger;
 import play.mvc.Controller;
 
 public class PublicBlogPost extends Controller {
-public static void show(Long postid) {
+public static void show(Long blogid, Long postid) {
 		
         Logger.info("Post ID = " + postid);
 		Post post = Post.findById(postid);
+		Blog blog = Blog.findById(blogid);
+		User user = User.findByName(post.author);
 		
 		//List<Comment> comments = Comment.find("byPostid", post.id).fetch();
 		//Collections.reverse(comments);
 		
-		render(post);
+		render(post, blog, user);
 	}
 	
 	public static void visit(Long postid, Long userid) {
@@ -39,7 +42,7 @@ public static void show(Long postid) {
 		}
 	}
 	
-	public static void newComment(Long postid, String content) {
+	public static void newComment(Long blogid, Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
 		String author = fromUser.firstName;		
 		Logger.info("Comment from user " + fromUser.firstName
@@ -50,7 +53,9 @@ public static void show(Long postid) {
 		Comment commentObj = new Comment(content, author);
 		post.addComment(commentObj);
 		post.save();
-		show(postid);		
+		Blog blog = Blog.findById(blogid);
+		
+		show(blog.id, post.id);		
 	}
 	
 	public static void newVisitorComment(Long userid, Long postid, String content) {
@@ -68,9 +73,10 @@ public static void show(Long postid) {
 		visit(postid, user.id);		
 	}
 	
-	public static void deleteComment(Long postid, Long commentid) {
+	public static void deleteComment(Long blogid, Long postid, Long commentid) {
 		Post post = Post.findById(postid);
-				
+		Blog blog = Blog.findById(blogid);
+		
 		Comment theComment = Comment.findById(commentid);
 		
 		Logger.info("Comment " + theComment.content + " is now deleted");
@@ -79,6 +85,6 @@ public static void show(Long postid) {
 		post.save();
 		theComment.delete();
 		
-		show(postid);
+		show(blog.id, post.id);
 	}
 }
