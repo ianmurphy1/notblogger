@@ -17,6 +17,16 @@ public class PublicBlog extends Controller {
 
 		List<Post> posts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(posts);
+		
+		render(user, posts);
+	}
+	
+	public static void visit(Long userid, Long blogid) {
+		User user = User.findById(userid);
+		Blog blog = Blog.findById(blogid);
+
+		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
+		Collections.reverse(reversePosts);
 
 		User loggedInUser = null;
 		if (session.contains("logged_in_userid")) {
@@ -24,8 +34,9 @@ public class PublicBlog extends Controller {
 			loggedInUser = User.findById(Long.parseLong(userId));
 		}
 
-		render(user, loggedInUser, posts);
+		render(user, loggedInUser, reversePosts);
 	}
 }
+
 
 

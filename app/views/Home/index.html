@@ -1,38 +1,101 @@
 #{extends 'main.html' /}
 #{include 'nav/open.html' /}
-<div class="navbar-content open">
-        <ul class="nav">
-          <li class="active">
-            <a href="#">Home</a> 
-          </li>
-          <li>
-            <a href="/blogger">Blog Manager</a> 
-          </li>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">Edit Profile</a> 
-            </li>
-            <li>
-              <a href="#">Logout</a> 
-            </li>
-          </ul>
-        </ul>
-        <div class="btn-group pull-right">
-          <a class="btn dropdown-toggle btn-inverse btn-small" data-toggle="dropdown"
-          href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
-          <ul class="dropdown-menu pull-right">
-            <li>
-              <a href="/editprofile"> Edit Profile </a> 
-            </li>
-            <li>
-              <a href="/logout"> Logout </a> 
-            </li>
-          </ul>
-        </div>
-            
+        
+<li class="active"><a href="/home"> Home </a></li>
+<li><a href="/readinglist"> Reading List </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+
+</ul>
+
+<div class="btn-group pull-right">
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown"
+    href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <ul class="dropdown-menu pull-right">
+    <li><a href="/editprofile"> Edit Profile </a></li>
+    <li><a href="/logout"> Logout </a></li>
+  </ul>
+</div>                    
 #{include 'nav/close.html' /}
 
-
 <div class="container">
-<h1>This is the home page!!</h1>
-</div>
+  <div class="hero-unit hidden-phone">
+    <h1>Welcome to Not Blogger ${user.firstName}</h1>
+    <p>
+      <br> 
+    </p>
+    <button id="showEditor" class="btn btn-primary" type="button">Create Blog</button>         <br>
+  </div>
+  
+  <div class="row">
+  <div id="createblog" class="well span5">
+    <form method="POST" action="/home/createblog">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label">Blog Name</label>
+          <div class="controls">
+            <input class="input-block-level" type="text" name="name" id="name" placeholder="Enter Blog Name"> 
+          </div>
+        </div>
+        
+        <div class="controls">
+          <label class="checkbox" for="checkbox">
+          <input type="checkbox" value="true" id="isPublic" name="isPublic"> Public</label>                     
+        </div>
+        <div class="form-actions">
+          <button id="hideEditor" class="btn" type="button">Cancel</button>  
+          <input class="btn btn-primary" type="submit" value="Create"> 
+        </div>
+      </fieldset>
+    </form>          
+  </div>
+  </div>
+  
+  <div class="row">
+  <div class="well span5">
+    <h5>Your Public Blogs</h5>
+    #{if publicBlogs.size > 0}
+    #{list items:publicBlogs, as:'publicBlog'}
+    <h4>
+      <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} </a></br>
+    </h4>    
+    <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-mini">Delete</a>
+    <hr>
+    #{/list}
+    #{/if}
+    #{else}
+  <p>You have no public blogs ${user.firstName}.</p>
+  #{/else}
+  </div>
+  
+  <div class="well span5">
+    <h5>Your Private Blogs</h5>
+    #{if privateBlogs.size > 0}
+    #{list items:privateBlogs, as:'privateBlog'}
+    <h4>
+      <a href="@{PrivateBlog.show(privateBlog.id)}"> ${privateBlog.name} </a></br>
+    </h4>    
+    <a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-mini">Delete</a>
+    <hr>
+    #{/list}
+    #{/if}
+    #{else}
+       <p>
+         You have no Private Blogs ${user.firstName}.
+       </p>
+    #{/else}
+  </div>
+</div></div>
+
+<script src="@{'/public/javascripts/blogger.js'}"></script>
+
+<script>
+
+  $("#createblog").hide();
+
+  $(document).ready(function() {
+    loadEventHandlers();
+  });
+     
+</script>
+
+

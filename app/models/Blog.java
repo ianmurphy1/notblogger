@@ -13,13 +13,13 @@ import play.db.jpa.Model;
 public class Blog extends Model {
 	
 	public String name;
-	public User author;
+	public String author;
 	public boolean isPublic;
 	
 	@OneToMany (cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
-	public Blog(String name, User author, boolean isPublic) {
+	public Blog(String name, String author, boolean isPublic) {
 		this.name = name;
 		this.author = author;
 		this.isPublic = isPublic;

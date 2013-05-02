@@ -5,14 +5,16 @@
 # Import CRUD routes
 *      /admin              module:crud
 
-# Home page
+# Start page
 GET     /                                       Start.index
 GET     /login                                  Start.login
 GET     /signup                                 Start.signup
 POST    /register                               Start.register
 POST    /authenticate                           Start.authenticate
 
-
+# Home Page
+GET     /home                                   Home.index
+POST    /home/createblog                        Home.createBlog
 
 
 

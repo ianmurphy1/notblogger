@@ -23,7 +23,9 @@ public class CommentTest extends UnitTest {
 	public void setup() {
 		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");		
 		
-		blogA = new Blog("Blog1", bob, true);		
+		String author = bob.firstName;
+		
+		blogA = new Blog("Blog1", author, true);		
 		bob.addBlog(blogA);
 		
 		postA = new Post("Title1", "Post 1 content");		

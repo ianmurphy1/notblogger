@@ -20,8 +20,9 @@ public class PostTest extends UnitTest {
 	
 	@Before
 	public void setup() {
-		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");		
-		blogA = new Blog("Blog1", bob, true);
+		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");	
+		String author = bob.firstName;
+		blogA = new Blog("Blog1", author, true);
 		bob.addBlog(blogA);		
 		bob.save();		
 	}

@@ -15,18 +15,32 @@ public class Home extends Controller {
 		
 		User user = Start.getLoggedInUser();
 		
-		List<Blog> reverseBlogs = new ArrayList<Blog>(user.blogs);
-		Collections.reverse(reverseBlogs);
+		List<Blog> allBlogs = new ArrayList<Blog>(user.blogs);
 		
-		List<User> users = User.findAll();
+		List<Blog> publicBlogs = new ArrayList<Blog>();
+		List<Blog> privateBlogs = new ArrayList<Blog>();
+			
 		
-		render(user, reverseBlogs, users);
+		for (Blog blog: allBlogs) {
+			if (blog.isPublic) {
+				publicBlogs.add(blog);
+			} else if (!(blog.isPublic)){
+				privateBlogs.add(blog);
+			}
+		}
+		
+		Collections.reverse(publicBlogs);
+		Collections.reverse(privateBlogs);		
+		
+		render(user, publicBlogs, privateBlogs);
 	}
 	
 	public static void createBlog(String name, boolean isPublic) {
 		User user = Start.getLoggedInUser();
+		String author = user.firstName;
 		
-		Blog blog = new Blog(name, user, isPublic);
+		
+		Blog blog = new Blog(name, author, isPublic);
 		user.addBlog(blog);
 		user.save();
 		
