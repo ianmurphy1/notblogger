@@ -18,10 +18,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class User extends Model {
 	public String   firstName;
-	public String   lastName;
-	public int      age;
+	public String   lastName;	
 	public String   email;
 	public String   password;
+	public String   visitorMessage;
+	public int      age;
 	public Blob     profilePicture;
 	public Blob     avatar;
 	
@@ -31,6 +32,7 @@ public class User extends Model {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	public List<Blog> blogs;
+	
 	
 	public User(String firstName, String lastName, int age, String email, String password) {
 		this.firstName = firstName;
