@@ -46,10 +46,10 @@ public static void show(Long postid) {
 		}
 	}
 	
-	public static void guestVisit(Long blogid, Long postid) {		
-		
-		Blog blog = Blog.findById(blogid);
-		Post post = Post.findById(postid);		
+	public static void guestVisit(Long postid) {		
+				
+		Post post = Post.findById(postid);
+		Blog blog = post.blog;
 
 		render(post, blog);
 	}
@@ -84,10 +84,11 @@ public static void show(Long postid) {
 		visit(postid, user.id);		
 	}
 	
-	public static void deleteComment(Long postid, Long commentid) {
-		Post post = Post.findById(postid);		
+	public static void deleteComment(Long commentid) {			
 		
 		Comment theComment = Comment.findById(commentid);
+		
+		Post post = theComment.post;
 		
 		Logger.info("Comment " + theComment.content + " is now deleted");
 		
@@ -95,6 +96,6 @@ public static void show(Long postid) {
 		post.save();
 		theComment.delete();
 		
-		show(postid);
+		show(post.id);
 	}
 }

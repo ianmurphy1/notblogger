@@ -10,7 +10,7 @@
     #{list items:reversePosts, as:'post'}    
     
       <h5>
-        <a href="@{PublicBlogPost.guestVisit(blog.id, post.id)}"> ${post.title} </a></br>
+        <a href="@{PublicBlogPost.guestVisit(post.id)}"> ${post.title} </a></br>
       </h5>
       <p class="date">
         On ${post.postedAt.format('dd MMM yy')} at

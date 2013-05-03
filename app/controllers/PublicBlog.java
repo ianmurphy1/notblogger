@@ -36,18 +36,18 @@ public class PublicBlog extends Controller {
 		show(blog.id);
 	}
 	
-	public static void deletePost(Long postid, Long blogid) {
+	public static void deletePost(Long postid) {
 		User user = Start.getLoggedInUser();
 		
-		Blog blog = Blog.findById(blogid);
-		
 		Post post = Post.findById(postid);
+		
+		Blog blog = post.blog;		
 		blog.posts.remove(post);
 		
 		user.save();
 		post.delete();
 		
-		Home.index();
+		show(blog.id);
 	}
 	
 	public static void visit(Long blogid) {		
