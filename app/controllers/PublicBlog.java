@@ -51,7 +51,8 @@ public class PublicBlog extends Controller {
 	}
 	
 	public static void visit(Long userid, Long blogid) {
-		User user = User.findById(userid);
+		
+	    User user = User.findById(userid);		
 		Blog blog = Blog.findById(blogid);
 
 		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
@@ -64,6 +65,16 @@ public class PublicBlog extends Controller {
 		}
 
 		render(user, loggedInUser, reversePosts);
+	}
+	
+    public static void guestVisit(Long blogid) {		
+	    		
+		Blog blog = Blog.findById(blogid);
+
+		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
+		Collections.reverse(reversePosts);		
+
+		render(blog, reversePosts);
 	}
 }
 

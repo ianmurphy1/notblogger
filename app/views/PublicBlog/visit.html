@@ -1,82 +1,75 @@
-#{extends 'main.html' /} 
-#{set title:"${post.author}'s Blog Post: ${post.title}" /} 
+#{extends 'main.html' /}
+#{set title:"${blog.name} Blog" /}
+
 #{include 'nav/open.html' /}
+        
+<li><a href="/home"> Home </a></li>
+<li><a href="/readinglist"> Reading List </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+
 </ul>
+                    
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
-  <div class="span6 well">
-    <h4>${post.title}</h4>
-    <p class="date">${post.postedAt.format('dd MMM yy')}
+  #{if posts.size > 0}
+  <div id ="content" class="well span8">
+    <h3>Blog Posts</h3>
+    #{list items:blog.posts, as:'post'}
+    <h4>
+      <a href="@{PublicBlogPost.show(blog.id, post.id)}"> ${post.title} </a></br>
+    </h4>
+    <p class="date">On ${post.postedAt.format('dd MMM yy')} at
       ${post.postedAt.format('hh:mm')}</p>
-
-    <p>${post.content}</p>
+    <a href="@{PublicBlog.deletePost(post.id, blog.id)}" class="btn btn-mini">Delete</a>
     <hr>
+    #{/list}
 
-
-    <h5>Comments</h5>
-      #{if post.comments.size() > 0} 
-        #{list items:post.comments, as:'comment'}
-          <p>${comment.content}</p>
-            <p class="date">
-              Left By ${comment.author}
-              ${comment.postedAt.since()}
-            </p>
-            #{if (loggedIn && comment.author == currentUser.firstName)} 
-              <a href="@{BlogPost.deleteComment(post.id, comment.id)}" class="btn btn-mini">Delete</a> 
-            #{/if}
-            <hr>
-          #{/list}
-        #{/if} 
-      #{else}
-        <p>
-          There are no comments!! Why not be the first!
-        </p>
-      #{/else}
   </div>
+  #{/if} #{else}
+  <p>To add a post to ${blog.name} click the button bellow</p>
+  #{/else}  
 </div>
-#{if loggedIn}
-<div class="clearfix"></div>
-<p class="clearbutton">
-  <a href="@{Blog.visit(user.id)}" class="btn btn-primary"><i
-    class="icon-backward"></i> Back to ${user.firstName}'s Blog </a><br>
-</p>
-#{/if} #{if loggedIn}
 
-<div class="clearfix"></div>
-
-<div class="row-fluid">
-  <div class="span2">
-
-    <form class="form well" action="/blogpost/newvisitorcomment/" method="post">
-      <div class="control-group">
-        <label class="control-label">Add A Comment</label><br>
+<div id="createpost" class="row-fluid">
+  <form id="newpost" class="form well span7" method="post" action="@{PublicBlog.newPost(posttitle, content, blog.id)}">
+    <fieldset>
+      <legend>Create New Post</legend>
+      <div class="control-groweup">
+        <label class="control-label">Title</label><br>
         <div class="controls">
-          <textarea class="input-block-level"name="content" id="content"
-            placeholder="Enter Your Comment..."></textarea>
+          <textarea name="posttitle" class="field span11" rows="1"
+            placeholder="Blog Title..."></textarea>
         </div>
-        <input type="hidden" name="userid" value=${user.id} />
-        <input type="hidden" name="postid" value=${post.id} />
       </div>
-      <button type="submit" class="btn">Add Comment</button>
-    </form>
-
-  </div>
-
+      <div class="control-group">
+        <label class="control-label">Post Content</label>
+        <div class="controls">
+          <textarea name="content" class="field span11" rows="8"
+            placeholder="Your ramblings..."></textarea>
+          <br>
+        </div>
+      </div>
+      <div class="form-actions">
+      <button id="hidePostCreator" class="btn" type="button">Cancel</button> 
+        <input class="btn btn-primary" type="submit" value="Post Blog" />
+      </div>
+    </fieldset>
+  </form>
 </div>
-#{/if} #{else}
-<div class="clearfix"></div>
-<div class="row-fluid">
-  <div class="span5">
-    <p class="clearbutton">
-      <a href="/signup" class="btn btn-info">Signup</a> or <a
-        href="/login" class="btn btn-success">Login</a> to leave
-      comments.<br>
-    </p>
-    <p class="clearbutton">
-      <a href="@{Blog.visit(user.id)}" class="btn btn-primary"><i
-        class="icon-backward"></i> Back to ${user.firstName}'s Blog </a>
-    </p>
-  </div>
-</div>
-#{/else}
+<p>
+    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+  </p>
+<a href="/home" class="btn btn-success">Back Home</a>
+
+<script src="@{'/public/javascripts/blogger.js'}"></script>
+
+<script>
+
+  $("#createpost").hide();
+
+  $(document).ready(function() {
+    loadBlogEventHandlers();
+  });
+     
+</script>

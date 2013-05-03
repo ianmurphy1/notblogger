@@ -1,6 +1,9 @@
 package controllers;
 
 import java.util.List;
+import java.util.Set;
+
+
 
 import models.User;
 import play.mvc.Controller;
@@ -11,7 +14,13 @@ public class Members extends Controller {
 		User user = Start.getLoggedInUser();
 		
 		List<User> users = User.findAll();
-		users.remove(user);
+		users.remove(user);			
+		
+		Set<User> subscribingTo = user.subscribing;
+		
+		for (User checkUser: subscribingTo) {
+			users.remove(checkUser);
+		} 
 		
 		render(users);
 	}

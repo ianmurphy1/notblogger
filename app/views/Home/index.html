@@ -65,8 +65,7 @@
     <h5>
       <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
     </h5>    
-    <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-mini">Delete</a>
-    <hr>
+    
     #{/list}
     #{/if}
     #{else}

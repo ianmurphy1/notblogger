@@ -1,5 +1,9 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import models.Blog;
 import models.Comment;
 import models.Post;
@@ -42,6 +46,14 @@ public static void show(Long blogid, Long postid) {
 		}
 	}
 	
+	public static void guestVisit(Long blogid, Long postid) {		
+		
+		Blog blog = Blog.findById(blogid);
+		Post post = Post.findById(postid);		
+
+		render(post, blog);
+	}
+	
 	public static void newComment(Long blogid, Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
 		String author = fromUser.firstName;		
@@ -53,7 +65,6 @@ public static void show(Long blogid, Long postid) {
 		Comment commentObj = new Comment(content, author);
 		post.addComment(commentObj);
 		post.save();
-		Blog blog = Blog.findById(blogid);
 		
 		show(blogid, postid);		
 	}

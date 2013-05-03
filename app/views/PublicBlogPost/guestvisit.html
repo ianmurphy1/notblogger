@@ -1,0 +1,28 @@
+#{extends 'main.html' /} 
+#{set title:"${post.author}'s Post: ${post.title}" /} 
+#{include 'nav/open.html' /}
+</ul>
+#{include 'nav/close.html' /}
+
+<div class="row-fluid">
+  <div class="span6 well">
+    <h4>${post.title}</h4>
+    <p class="date">${post.postedAt.format('dd MMM yy')}
+      ${post.postedAt.format('hh:mm')}</p>
+
+    <p>${post.content}</p>
+    <hr>
+
+    <h5>Comments</h5>
+      
+        <p>
+         You cannot read or leave comments if you are not a registered user.
+        </p>
+        
+        <a href="@{PublicBlog.guestVisit(blog.id)}"> Back To Blog </a></br>
+      
+  </div>
+</div>
+
+
+

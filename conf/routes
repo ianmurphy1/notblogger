@@ -21,7 +21,9 @@ POST    /home/createblog                        Home.createBlog
 GET     /members                                Members.index
 GET     /members/subscribe/{id}                 Members.subscribe
 
-
+# Subscriptions
+GET     /subscriptions                          Subscriptions.index
+GET     /subscriptions/unsubscribe/{id}         Subscriptions.unsubscribe
 
 # Profile Page
 GET     /homeprofile                            HomeProfile.index
