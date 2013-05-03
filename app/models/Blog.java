@@ -19,7 +19,7 @@ public class Blog extends Model {
 	@ManyToOne
 	public User author;
 	
-	@OneToMany (mappedBy="blog", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="blog", cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
 	public Blog(String name, boolean isPublic) {

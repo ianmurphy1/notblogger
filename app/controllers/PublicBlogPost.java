@@ -12,12 +12,12 @@ import play.Logger;
 import play.mvc.Controller;
 
 public class PublicBlogPost extends Controller {
-public static void show(Long blogid, Long postid) {
+public static void show(Long postid) {
 		
         Logger.info("Post ID = " + postid);
 		Post post = Post.findById(postid);
-		Blog blog = Blog.findById(blogid);
-		User user = User.findByName(post.author);
+		Blog blog = post.blog;
+		User user = blog.author;
 		
 		//List<Comment> comments = Comment.find("byPostid", post.id).fetch();
 		//Collections.reverse(comments);
@@ -54,7 +54,7 @@ public static void show(Long blogid, Long postid) {
 		render(post, blog);
 	}
 	
-	public static void newComment(Long blogid, Long postid, String content) {
+	public static void newComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
 		String author = fromUser.firstName;		
 		Logger.info("Comment from user " + fromUser.firstName
@@ -66,7 +66,7 @@ public static void show(Long blogid, Long postid) {
 		post.addComment(commentObj);
 		post.save();
 		
-		show(blogid, postid);		
+		show(postid);		
 	}
 	
 	public static void newVisitorComment(Long userid, Long postid, String content) {
@@ -84,7 +84,7 @@ public static void show(Long blogid, Long postid) {
 		visit(postid, user.id);		
 	}
 	
-	public static void deleteComment(Long blogid, Long postid, Long commentid) {
+	public static void deleteComment(Long postid, Long commentid) {
 		Post post = Post.findById(postid);		
 		
 		Comment theComment = Comment.findById(commentid);
@@ -95,6 +95,6 @@ public static void show(Long blogid, Long postid) {
 		post.save();
 		theComment.delete();
 		
-		show(blogid, postid);
+		show(postid);
 	}
 }

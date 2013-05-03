@@ -50,10 +50,11 @@ public class PublicBlog extends Controller {
 		Home.index();
 	}
 	
-	public static void visit(Long userid, Long blogid) {
-		
-	    User user = User.findById(userid);		
+	public static void visit(Long blogid) {		
+	    		
 		Blog blog = Blog.findById(blogid);
+		
+		User user = blog.author;
 
 		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(reversePosts);

@@ -36,8 +36,7 @@ public class Home extends Controller {
 	}
 	
 	public static void createBlog(String name, boolean isPublic) {
-		User user = Start.getLoggedInUser();
-				
+		User user = Start.getLoggedInUser();				
 		
 		Blog blog = new Blog(name, isPublic);
 		user.addBlog(blog);
