@@ -23,12 +23,11 @@ public class CommentTest extends UnitTest {
 	public void setup() {
 		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");		
 		
-		String author = bob.firstName;
-		
-		blogA = new Blog("Blog1", author, true);		
+			
+		blogA = new Blog("Blog1", true);		
 		bob.addBlog(blogA);
 		
-		postA = new Post("Title1", "Post 1 content", author);		
+		postA = new Post("Title1", "Post 1 content", bob.firstName);		
 		blogA.addPost(postA);
 		
 		bob.save();		

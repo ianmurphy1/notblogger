@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
@@ -12,16 +13,17 @@ import play.db.jpa.Model;
 @Entity
 public class Blog extends Model {
 	
-	public String name;
-	public String author;
+	public String name;	
 	public boolean isPublic;
+	
+	@ManyToOne
+	public User author;
 	
 	@OneToMany (mappedBy="blog", cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
-	public Blog(String name, String author, boolean isPublic) {
-		this.name = name;
-		this.author = author;
+	public Blog(String name, boolean isPublic) {
+		this.name = name;		
 		this.isPublic = isPublic;
 		this.posts = new ArrayList<Post>();
 	}

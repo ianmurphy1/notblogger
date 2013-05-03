@@ -30,7 +30,7 @@ public class User extends Model {
 	@JoinTable(name = "Subscribing")
 	public Set<User> subscribing;	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="author", cascade = CascadeType.ALL)
 	public List<Blog> blogs;
 	
 	

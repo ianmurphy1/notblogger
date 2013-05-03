@@ -32,8 +32,8 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testCreateBlog() {
-		String author = bob.firstName;
-		Blog aBlog = new Blog("Blog1", author, false);
+		
+		Blog aBlog = new Blog("Blog1", false);
 		bob.addBlog(aBlog);
 		bob.save();
 		
@@ -46,10 +46,10 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testCreateMultipleBlogs() {
-		String author = bob.firstName;
 		
-		Blog blogA = new Blog("Blog1", author, true);
-		Blog blogB = new Blog("Blog2", author, false);
+		
+		Blog blogA = new Blog("Blog1", true);
+		Blog blogB = new Blog("Blog2", false);
 		
 		bob.addBlog(blogA);
 		bob.addBlog(blogB);
@@ -70,10 +70,9 @@ public class BlogTest extends UnitTest {
 	
 	@Test
 	public void testRemoveBlog() {
-		String author = bob.firstName;
-		
-		Blog blogA = new Blog("Blog1", author, true);
-		Blog blogB = new Blog("Blog2", author, false);
+				
+		Blog blogA = new Blog("Blog1", true);
+		Blog blogB = new Blog("Blog2", false);
 		
 		bob.addBlog(blogA);
 		bob.addBlog(blogB);

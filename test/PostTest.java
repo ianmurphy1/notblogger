@@ -21,8 +21,8 @@ public class PostTest extends UnitTest {
 	@Before
 	public void setup() {
 		bob = new User("Bob", "Jones", 18, "bob@gmail.com", "secret");	
-		String author = bob.firstName;
-		blogA = new Blog("Blog1", author, true);
+		
+		blogA = new Blog("Blog1", true);
 		bob.addBlog(blogA);		
 		bob.save();		
 	}
@@ -37,8 +37,8 @@ public class PostTest extends UnitTest {
 	
 	@Test
 	public void createPost() {
-		String author = bob.firstName;
-		Post aPost = new Post("Post1", "This is content.", author);
+		
+		Post aPost = new Post("Post1", "This is content.", blogA.author.firstName);
 		blogA.addPost(aPost);
 		blogA.save();
 		bob.save();
