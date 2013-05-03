@@ -19,6 +19,7 @@
 </div>                    
 #{include 'nav/close.html' /}
 
+
 <div class="container">
   <div class="hero-unit hidden-phone">
     <h1>Welcome to Not Blogger ${user.firstName}</h1>
@@ -50,6 +51,9 @@
       </fieldset>
     </form>          
   </div>
+  <script>
+    $("#createblog").hide();
+  </script>
   </div>
   
   <div class="row">
@@ -94,13 +98,9 @@
 <script src="@{'/public/javascripts/blogger.js'}"></script>
 
 <script>
-
-  $("#createblog").hide();
-
   $(document).ready(function() {
     loadHomeEventHandlers();
-  });
-     
+  });     
 </script>
 
 

@@ -18,6 +18,8 @@
 </div>                    
 #{include 'nav/close.html' /}
 
+
+
 <div class="container">
       <div class="row">
         <div class="well span7">
@@ -27,41 +29,49 @@
             <h4>Your Info</h4>
             <p>Your Name: ${user.firstName} ${user.lastName}
               <br> Your Age: ${user.age}
-              <br> 
+              <br> Your Blogs: ${user.blogs.size()}
             </p>
           </div>
           <div class="well">
             <h4>Public Info</h4>
-            <p class="infotag">What your subscribers can see about you.</p>
+            <p class="infotag">What visitors to your profile can see about you</p>
             <hr>
             <p>
               <strong>Your Name:</strong> ${user.firstName} ${user.lastName}
               <br>
               <br>
-              <strong>Your Visitor Message</strong> #{ifnot user.visitorMessage == null} ${user.visitorMessage}
-              <br> #{/ifnot} #{else}
+              <strong>Your Visitor Message</strong> 
+              #{ifnot user.visitorMessage == null} 
+                ${user.visitorMessage} <br> 
+              #{/ifnot} 
+              #{else}
               <br> A visitor message is a little message you can leave visitors to your profile
               to convince them to subscribe to your blog. You can set yours using the
-              input box to the right. #{/else}</p>
+              button below. #{/else}</p>
+              
+              <button id="showMessageCreator" class="btn btn-primary" type="button">Set Message</button>         <br>
           </div>
         </div>
-        <div class="well span3">
-          <form class="form" method="post" action="homeprofile/changetext">
+        <div id="createmessage" class="well span3">
+          <form class="form" method="post" action="homeprofile/changemessage">
             <fieldset>
               <legend>Change Visitor Message</legend>
               <div class="control-group">
                 <div class="controls">
-                  <textarea class="input-block-level" placeholder="Enter Your Message..."
-                  name="profiletext"></textarea>
+                  <textarea class="input-block-level" placeholder="Enter Your Message..." name="message"></textarea>
                   <br> 
                 </div>
               </div>
               <div class="form-actions">
-                <input class="btn btn-primary" type="submit" value="Change Status"> 
+              <button id="hideMessageCreator" class="btn" type="button">Cancel</button> 
+                <input class="btn btn-primary" type="submit" value="Set Message"> 
               </div>
             </fieldset>
           </form>
         </div>
+        <script>
+           $("#createmessage").hide();
+        </script>
       </div>
       <div class="row">
         <div class="well span5">
@@ -103,3 +113,11 @@
         </div>
       </div>
     </div>
+    
+<script src="@{'/public/javascripts/blogger.js'}"></script>
+
+<script>
+  $(document).ready(function() {
+    loadProfileEventHandlers();
+  });     
+</script>

@@ -14,6 +14,22 @@
 
     <p>${post.content}</p>
     <hr>
+    <div id="createcomment">
+   <form class="form" action="@{PublicBlogPost.newComment(blog.id, post.id)}" method="post">
+      <div class="control-group">
+        <label class="control-label">Add A Comment</label><br>
+        <div class="controls">
+          <textarea class="input-block-level" name="content" id="content"
+            placeholder="Enter Your Comment..."></textarea>
+        </div>
+        <input type="hidden" name="blogid" value=${blog.id} />
+        <input type="hidden" name="postid" value=${post.id} />
+      </div>
+      <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
+      <button type="submit" class="btn btn-success">Add Comment</button>
+    </form>
+  </div>
+    <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
     <a href="@{PublicBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     <hr>
     <h5>Comments</h5>
@@ -23,16 +39,23 @@
         <p class="date">
           Left By ${comment.author}<br> ${comment.postedAt.since()}
         </p>
-        <a href="@{BlogPost.deleteComment(post.id, comment.id)}" class="btn btn-mini">Delete</a>
+        <a href="@{PublicBlogPost.deleteComment(blog.id, post.id, comment.id)}" class="btn btn-mini">Delete</a>
         <hr>
       #{/list} 
     #{/if}
     #{else} 
       No comments yet. 
     #{/else}
+  </div>  
   </div>
   
+  <script src="@{'/public/javascripts/blogger.js'}"></script>
+<script>
+    $("#createcomment").hide();
+  </script>
+<script>
+  $(document).ready(function() {
+    loadPostEventHandlers();
+  });     
+</script>
   
-    
-  
-</div>

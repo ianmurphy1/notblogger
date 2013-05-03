@@ -55,7 +55,7 @@ public static void show(Long blogid, Long postid) {
 		post.save();
 		Blog blog = Blog.findById(blogid);
 		
-		show(blog.id, post.id);		
+		show(blogid, postid);		
 	}
 	
 	public static void newVisitorComment(Long userid, Long postid, String content) {
@@ -74,8 +74,7 @@ public static void show(Long blogid, Long postid) {
 	}
 	
 	public static void deleteComment(Long blogid, Long postid, Long commentid) {
-		Post post = Post.findById(postid);
-		Blog blog = Blog.findById(blogid);
+		Post post = Post.findById(postid);		
 		
 		Comment theComment = Comment.findById(commentid);
 		
@@ -85,6 +84,6 @@ public static void show(Long blogid, Long postid) {
 		post.save();
 		theComment.delete();
 		
-		show(blog.id, post.id);
+		show(blogid, postid);
 	}
 }

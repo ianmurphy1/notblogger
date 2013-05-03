@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Log In to NotBlogger' /}
 #{include 'nav/open.html' /}
-<li><a href="/">Home</a></li>
+<li><a href="/">Main</a></li>
           <li class="active"><a href="/login">Login</a></li>
           <li><a href="/signup">Signup</a></li>
         </ul>
@@ -10,7 +10,7 @@
 
 
 <div class="row">
-      <div class="hero-unit hidden-phone span4">
+      <div class="well span4">
         <h1>Sign in to NotBlogger</h1>        
           <br>         
         <form method="post" action="/authenticate">
@@ -33,4 +33,4 @@
           </fieldset>
         </form>
        </div>        
-    </div>
+  </div>  
