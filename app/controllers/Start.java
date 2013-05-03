@@ -8,22 +8,31 @@ import java.util.*;
 import models.*;
 
 public class Start extends Controller {
-	public static void index() {		
+	public static void index() {
+		
+		List<User> users = User.findAll();
 				
-		List<Blog> blogs = Blog.findAll();				
-				
+		List<Blog> publicBlogs = new ArrayList<Blog>();
+		
+		for (User user: users) {
+			
+			List<Blog> blogs = user.blogs;			
+			for (Blog blog: blogs) {
+				if (blog.isPublic) {
+					publicBlogs.add(blog);
+				}
+			}			
+		}
+		
 		//Takes list and shuffles them
-		List<Blog> showThese = new ArrayList<Blog>();
-		for (Blog blog: blogs) {
-			if (blog.isPublic) {
-				showThese.add(blog);
-			}
-		}		
-		Collections.shuffle(showThese);		
+		List<Blog> showThese = new ArrayList<Blog>(publicBlogs);
+		Collections.shuffle(showThese);
+		
 		//If the list is bigger than 10 it'll take the first 10 of the list
 		if (showThese.size() > 10) {
 			showThese = showThese.subList(0, 11);
 		}
+		
 		render(showThese);
 	}
 
