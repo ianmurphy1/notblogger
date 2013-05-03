@@ -15,7 +15,7 @@ public class Home extends Controller {
 		
 		User user = Start.getLoggedInUser();		
 		
-		List<Blog> allBlogs = new ArrayList<Blog>(user.blogs);
+		List<Blog> allBlogs = user.blogs;
 		
 		List<Blog> publicBlogs = new ArrayList<Blog>();
 		List<Blog> privateBlogs = new ArrayList<Blog>();
@@ -40,6 +40,7 @@ public class Home extends Controller {
 		
 		Blog blog = new Blog(name, isPublic);
 		user.addBlog(blog);
+		blog.save();
 		user.save();
 		
 		Logger.info("Name: " + name + " " + "Is Visible: " + isPublic);

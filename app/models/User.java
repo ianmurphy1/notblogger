@@ -46,7 +46,7 @@ public class User extends Model {
 	
 	public void addBlog(Blog blog) {
 		blog.author = this;
-		blogs.add(blog);
+		blogs.add(blog);		
 	}
 	
 	public void removeBlog(Blog blog) {
