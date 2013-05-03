@@ -41,7 +41,8 @@ POST    /editprofile/changename/{id}            EditProfile.changeName
 POST    /editprofile/changeage/{id}             EditProfile.changeAge
 POST    /editprofile/changepassword/{id}        EditProfile.changePassword
 
-
+# User Profile
+GET     /userprofile/{id}                       UserProfile.visit
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

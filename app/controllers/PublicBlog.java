@@ -30,7 +30,7 @@ public class PublicBlog extends Controller {
 		Post post = new Post(posttitle, content, author);
 		blog.addPost(post);
 		blog.save();
-		user.save();
+		
 		
 		Logger.info("title: " + posttitle + " content: " + content);
 		show(blog.id);
@@ -64,7 +64,7 @@ public class PublicBlog extends Controller {
 			loggedInUser = User.findById(Long.parseLong(userId));
 		}
 
-		render(user, loggedInUser, reversePosts);
+		render(user, loggedInUser, blog, reversePosts);
 	}
 	
     public static void guestVisit(Long blogid) {		

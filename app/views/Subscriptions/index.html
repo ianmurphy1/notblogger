@@ -22,18 +22,14 @@
 <div class="well">
     <h3>Subscriptions</h3>
 
-    <ul>
+    <ul class="unstyled">
       #{list items:user.subscribing, as:'subscribing'}
         <li>
           <a href="userprofile/${subscribing.id}"> ${subscribing.firstName} ${subscribing.lastName} </a><br> 
           Remove Subscription <a class="btn btn-danger btn-mini" href="/readinglist/unsubscribe/${subscribing.id}"><i class="icon-minus icon-white"></i></a>
           <hr>
         </li>
-        #{list items:subscribing.blogs, as:'blog'}
-           <li>
-              <a href="#">This</a>
-           </li>
-        #{/list} 
+        
       #{/list}
     </ul>
   </div>

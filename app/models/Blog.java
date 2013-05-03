@@ -16,7 +16,7 @@ public class Blog extends Model {
 	public String author;
 	public boolean isPublic;
 	
-	@OneToMany (cascade = CascadeType.ALL)
+	@OneToMany (mappedBy="blog", cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
 	public Blog(String name, String author, boolean isPublic) {
@@ -27,6 +27,8 @@ public class Blog extends Model {
 	}
 	
 	public void addPost(Post post) {
+		post.blog = this;
+		post.save();
 		posts.add(post);
 	}
 	

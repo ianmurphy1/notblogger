@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
@@ -20,7 +21,10 @@ public class Post extends Model {
 	@Lob
 	public String content;
 	
-	@OneToMany (cascade = CascadeType.ALL)
+	@ManyToOne
+	public Blog blog;
+	
+	@OneToMany (mappedBy="post", cascade = CascadeType.ALL)
 	public List<Comment> comments;
 	
 	public Post(String title, String content, String author) {
@@ -32,6 +36,7 @@ public class Post extends Model {
 	}
 	
 	public void addComment(Comment comment) {
+		comment.post = this;
 		comments.add(comment);
 	}
 	

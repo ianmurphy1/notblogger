@@ -1,10 +1,10 @@
 #{extends 'main.html' /}
-#{set title:"${blog.name} Blog" /}
+#{set title:"${blog.name} Blog by ${blog.author}" /}
 
 #{include 'nav/open.html' /}
         
 <li><a href="/home"> Home </a></li>
-<li><a href="/readinglist"> Reading List </a></li>
+<li><a href="/subscriptions"> Subscriptions </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
 
 </ul>
@@ -12,7 +12,7 @@
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
-  #{if posts.size > 0}
+  #{if reversePosts.size > 0}
   <div id ="content" class="well span8">
     <h3>Blog Posts</h3>
     #{list items:blog.posts, as:'post'}
@@ -21,7 +21,7 @@
     </h4>
     <p class="date">On ${post.postedAt.format('dd MMM yy')} at
       ${post.postedAt.format('hh:mm')}</p>
-    <a href="@{PublicBlog.deletePost(post.id, blog.id)}" class="btn btn-mini">Delete</a>
+    
     <hr>
     #{/list}
 
@@ -31,45 +31,7 @@
   #{/else}  
 </div>
 
-<div id="createpost" class="row-fluid">
-  <form id="newpost" class="form well span7" method="post" action="@{PublicBlog.newPost(posttitle, content, blog.id)}">
-    <fieldset>
-      <legend>Create New Post</legend>
-      <div class="control-groweup">
-        <label class="control-label">Title</label><br>
-        <div class="controls">
-          <textarea name="posttitle" class="field span11" rows="1"
-            placeholder="Blog Title..."></textarea>
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label">Post Content</label>
-        <div class="controls">
-          <textarea name="content" class="field span11" rows="8"
-            placeholder="Your ramblings..."></textarea>
-          <br>
-        </div>
-      </div>
-      <div class="form-actions">
-      <button id="hidePostCreator" class="btn" type="button">Cancel</button> 
-        <input class="btn btn-primary" type="submit" value="Post Blog" />
-      </div>
-    </fieldset>
-  </form>
-</div>
-<p>
-    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
-  </p>
-<a href="/home" class="btn btn-success">Back Home</a>
 
-<script src="@{'/public/javascripts/blogger.js'}"></script>
 
-<script>
+<a href="/userprofile/${user.id}" class="btn btn-success">Back To ${user.firstName}'s Profile</a>
 
-  $("#createpost").hide();
-
-  $(document).ready(function() {
-    loadBlogEventHandlers();
-  });
-     
-</script>
