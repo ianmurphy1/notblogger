@@ -27,8 +27,8 @@ public class User extends Model {
 	public Blob     avatar;
 	
 	@ManyToMany
-	@JoinTable(name = "Following")
-	public Set<User> following;	
+	@JoinTable(name = "Subscribing")
+	public Set<User> subscribing;	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	public List<Blog> blogs;

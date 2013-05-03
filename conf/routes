@@ -17,6 +17,12 @@ POST    /authenticate                           Start.authenticate
 GET     /home                                   Home.index
 POST    /home/createblog                        Home.createBlog
 
+# Members
+GET     /members                                Members.index
+GET     /members/subscribe/{id}                 Members.subscribe
+
+
+
 # Profile Page
 GET     /homeprofile                            HomeProfile.index
 POST    /homeprofile/changemessage              HomeProfile.changeMessage

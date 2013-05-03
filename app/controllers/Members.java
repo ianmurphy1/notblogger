@@ -16,13 +16,13 @@ public class Members extends Controller {
 		render(users);
 	}
 	
-	public static void follow(Long id) {
+	public static void subscribe(Long id) {
 		User user = Start.getLoggedInUser();
 		User userToFollow = User.findById(id);
 		
-		user.following.add(userToFollow);
+		user.subscribing.add(userToFollow);
 		user.save();
 		
-		Home.index();
+		index();
 	}
 }

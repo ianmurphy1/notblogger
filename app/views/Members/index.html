@@ -1,10 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title:'NotBlogger Members' /}
+#{include 'nav/open.html' /}
+          <li>                <a href="/home">        Home         </a></li>
+          <li>                <a href="/readinglist"> Reading List </a></li>
+          <li class="active"> <a href="/members">     Members      </a></li>
+          <li>                <a href="/homeprofile"> My Profile   </a></li> 
+          </ul>
+          <div class="btn-group pull-right">
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown"
+    href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <ul class="dropdown-menu pull-right">
+    <li><a href="/editprofile"> Edit Profile </a></li>
+    <li><a href="/logout"> Logout </a></li>
+  </ul>
+</div>              
+#{include 'nav/close.html' /}
+<div class="container">
 
-</body>
-</html>
+  
+    <h3>Members</h3>
+    
+    <p>
+      Will work better as a table I think!
+    </p>
+    
+    <ul class="unstyled">
+      #{list items:users, as:'user'}
+      <li class="well">${user.lastName}, ${user.firstName}
+        <p class="infotag">
+          Add As Friend <a href="members/subscribe/${user.id}" title="Subscribe"><i class="icon-plus"></i></a>
+        </p>
+        
+        <p>
+          <strong>Visitor Message</strong> <br> ${user.visitorMessage}
+        </p>
+      </li> 
+      #{/list}
+    </ul>
+  
+</div>

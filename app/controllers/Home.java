@@ -13,7 +13,7 @@ public class Home extends Controller {
 	
 	public static void index() {
 		
-		User user = Start.getLoggedInUser();
+		User user = Start.getLoggedInUser();		
 		
 		List<Blog> allBlogs = new ArrayList<Blog>(user.blogs);
 		

@@ -1,10 +1,105 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+#{extends 'main.html' /} 
+#{set title:"NotBlogger Home Profile for ${user.firstName} ${user.lastName}" /} 
+#{include 'nav/open.html' /}
+<li>                 <a href="/home">           Home            </a></li>
+<li>                 <a href="/readinglist">    Reading List    </a></li>
+<li>                 <a href="/members">        Members         </a></li>
+<li class="active">  <a href="/homeprofile">    My Profile      </a></li>
 
-</body>
-</html>
+</ul>
+
+<div class="btn-group pull-right">
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown"
+    href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <ul class="dropdown-menu pull-right">
+    <li><a href="/editprofile"> Edit Profile </a></li>
+    <li><a href="/logout"> Logout </a></li>
+  </ul>
+</div>                    
+#{include 'nav/close.html' /}
+
+<div class="container">
+      <div class="row">
+        <div class="well span7">
+          <h3>${user.firstName}'s Details</h3>
+          <hr>
+          <div class="well">
+            <h4>Your Info</h4>
+            <p>Your Name: ${user.firstName} ${user.lastName}
+              <br> Your Age: ${user.age}
+              <br> 
+            </p>
+          </div>
+          <div class="well">
+            <h4>Public Info</h4>
+            <p class="infotag">What your subscribers can see about you.</p>
+            <hr>
+            <p>
+              <strong>Your Name:</strong> ${user.firstName} ${user.lastName}
+              <br>
+              <br>
+              <strong>Your Visitor Message</strong> #{ifnot user.visitorMessage == null} ${user.visitorMessage}
+              <br> #{/ifnot} #{else}
+              <br> A visitor message is a little message you can leave visitors to your profile
+              to convince them to subscribe to your blog. You can set yours using the
+              input box to the right. #{/else}</p>
+          </div>
+        </div>
+        <div class="well span3">
+          <form class="form" method="post" action="homeprofile/changetext">
+            <fieldset>
+              <legend>Change Visitor Message</legend>
+              <div class="control-group">
+                <div class="controls">
+                  <textarea class="input-block-level" placeholder="Enter Your Message..."
+                  name="profiletext"></textarea>
+                  <br> 
+                </div>
+              </div>
+              <div class="form-actions">
+                <input class="btn btn-primary" type="submit" value="Change Status"> 
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="well span5">
+          <form class="form " method="post" action="/homeprofile/uppicture/${user.id}"
+          enctype="multipart/form-data">
+            <fieldset>
+              <legend>Upload Profile Picture</legend>
+              <img src="/homeprofile/getpicture/${user.id}"
+              class="img-polaroid">
+              <div class="control-group">
+                <div class="controls">
+                  <input type="file" name="picture" value="">
+                  <br> 
+                </div>
+              </div>
+              <div class="form-actions">
+                <input class="btn btn-info btn-small" type="submit" name="submit" value="Upload Picture"> 
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="well span5">
+          <form class="form " method="post" action="/homeprofile/upavatar/${user.id}" enctype="multipart/form-data">
+            <fieldset>
+              <legend>Upload Avatar</legend>
+              <img src="/homeprofile/getthumbnail/${user.id}"
+              class="img-polaroid">
+              <div class="control-group">
+                <div class="controls">
+                  <input type="file" name="picture" value="">
+                  <br> 
+                </div>
+              </div>
+              <div class="form-actions">
+                <input class="btn btn-info btn-small" type="submit" name="submit" value="Upload Avatar"> 
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
