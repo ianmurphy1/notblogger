@@ -14,6 +14,8 @@ public class Bootstrap extends Job {
 			Fixtures.deleteDatabase();
 			Fixtures.loadModels("/data/users.yml");
 			Fixtures.loadModels("/data/blogs.yml");
+			Fixtures.loadModels("/data/posts.yml");
+			Fixtures.loadModels("/data/comments.yml");
 	    }
     }
 }

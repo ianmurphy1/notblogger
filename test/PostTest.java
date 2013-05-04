@@ -28,11 +28,8 @@ public class PostTest extends UnitTest {
 	}
 	
 	@After
-	public void teardown() {
-		blogA.posts.clear();		
-		bob.blogs.clear();
+	public void teardown() {		
 		bob.delete();
-		blogA.delete();
 	}
 	
 	@Test

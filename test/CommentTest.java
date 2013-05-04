@@ -25,32 +25,28 @@ public class CommentTest extends UnitTest {
 		
 			
 		blogA = new Blog("Blog1", true);		
-		bob.addBlog(blogA);
-		
-		postA = new Post("Title1", "Post 1 content", bob.firstName);		
-		blogA.addPost(postA);
-		
-		bob.save();		
+		bob.addBlog(blogA);			
+		bob.save();
+		postA = new Post("Title1", "Post 1 content", bob.firstName);
+		postA.save();
+		blogA.addPost(postA);		
+		blogA.save();
 	}
 	
 	@After
 	public void teardown() {
-		postA.comments.clear();
-		blogA.posts.clear();		
-		bob.blogs.clear();
 		bob.delete();
-		blogA.delete();
-		postA.delete();
 	}
 	
 	@Test
 	public void testCreateComment() {
-		User user = User.findByEmail("bob@gmail.com");
-		String author = user.firstName;
+		User user = User.findByEmail("bob@gmail.com");		
 		
-		Comment commentA = new Comment("This is a comment", author);		
+		Comment commentA = new Comment("This is a comment");		
 		Post post = postA;		
 		post.addComment(commentA);
+		postA.save();
+		blogA.save();
 		bob.save();
 		
 		List<Comment> comments = post.comments;
@@ -64,14 +60,17 @@ public class CommentTest extends UnitTest {
 	@Test
 	public void testMultipleCreateComments() {
 		User user = User.findByEmail("bob@gmail.com");
-		String author = user.firstName;
+		
 		Post post = postA;	
 		
-		Comment commentA = new Comment("First", author);				
+		Comment commentA = new Comment("First");				
 		post.addComment(commentA);
 		
-		Comment commentB = new Comment("Second", author);
+		Comment commentB = new Comment("Second");
 		post.addComment(commentB);
+		postA.save();
+		blogA.save();
+		bob.save();
 		
 		List<Comment> comments = postA.comments;
 		assertEquals(comments.size(), 2);
@@ -85,21 +84,21 @@ public class CommentTest extends UnitTest {
 	@Test
 	public void testRemoveComment() {
 		User user = User.findByEmail("bob@gmail.com");
-		String author = user.firstName;
+		
 		Post post = postA;	
 		
-		Comment commentA = new Comment("First", author);				
+		Comment commentA = new Comment("First");				
 		post.addComment(commentA);
 		
-		Comment commentB = new Comment("Second", author);
+		Comment commentB = new Comment("Second");
 		post.addComment(commentB);
-		bob.save();
+		
 		
 		List<Comment> comments = postA.comments;
 		assertEquals(2, comments.size());
 
 		post.removeComment(commentA);
-		bob.save();
+		
 		commentA.delete();
 		assertEquals(1, comments.size());
 		

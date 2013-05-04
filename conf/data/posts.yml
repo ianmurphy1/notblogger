@@ -1,13 +1,23 @@
-User(homer):
-    firstName: Homer
-    lastName: Simpson
-    age: 40    
-    email: homer@simpson.com
-    password: secret
-
-User(marge):
-    firstName: Marge
-    lastName: Simpson
-    age: 38    
-    email: marge@simpson.com
-    password: secret
+Post(post1):
+    title: It Starts
+    content: Wipe away the debt and save the girl. 
+    postedAt: 2013-05-05
+    blog: bookPubBlog
+    
+Post(post2):
+    title: Diamonds
+    content: The man who invented the diamond. Alright. H. Tracy Hall - write this name down. Dr. Hall invented the first reproducible process for making synthetic diamonds. I mean, this is way back in the 50's. Now today, synthetic diamonds are used in oil drilling, electronics, multi-billion dollar industries. Now at the time, Dr. Hall worked for General Electric and he made them a fortune. I mean, incalculable. You want to know how GE rewarded Dr. Hall? A $10 U.S. savings bond. Anyway, a savings bond printed on carbon-based paper paid to a carbon-based man for something he made out of...carbon.
+    postedAt: 2013-05-05
+    blog: waltPubBlog1
+    
+Post(post3):
+    title: Work
+    content: Been working a lot...It's in a laundromat, it's totally corporate...It's like rigid, all kinds of red tape, my boss is a dick, the owner, super dick, don't know if we're ever going to meet him, everybody's scared of the dude. Place is full of dead-eyed douchebags, the hours suck, and nobody knows what's going on.
+    postedAt: 2013-04-21 
+    blog: jessePubBlog1
+    
+Post(post4):
+    title: Rapture 
+    content: Is a man not entitled to the sweat of his brow? No! says the man in Washington, 'it belongs to the poor.' 'No!' says the man in the Vatican, 'it belongs to God.' 'No!' says the man in Moscow, 'it belongs to everyone.' I rejected those answers; instead, I chose something different. I chose the impossible. I chose... Rapture. - Andrew Ryan
+    postedAt: 2013-05-06
+    blog: lizPrivBlog2  

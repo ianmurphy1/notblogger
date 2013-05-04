@@ -26,16 +26,14 @@ public class BlogTest extends UnitTest {
 	
 	@After
 	public void teardown() {
-		bob.blogs.clear();
-		bob.delete();
+		bob.delete();		
 	}
 	
 	@Test
 	public void testCreateBlog() {
 		
 		Blog aBlog = new Blog("Blog1", false);
-		bob.addBlog(aBlog);
-		bob.save();
+		bob.addBlog(aBlog);		
 		
 		User user = User.findByEmail("bob@gmail.com");
 		List<Blog> blogs = user.blogs;
@@ -76,14 +74,13 @@ public class BlogTest extends UnitTest {
 		
 		bob.addBlog(blogA);
 		bob.addBlog(blogB);
-		bob.save();
+		
 		
 		User user = User.findByEmail("bob@gmail.com");
 		List<Blog> blogs = user.blogs;
 		assertEquals(2, blogs.size());
 		
-		user.removeBlog(blogA);
-		user.save();
+		user.removeBlog(blogA);		
 		blogA.delete();
 		
 		

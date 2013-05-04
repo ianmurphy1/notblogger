@@ -9,9 +9,8 @@ import javax.persistence.ManyToOne;
 import play.db.jpa.Model;
 
 @Entity
-public class Comment extends Model {
+public class Comment extends Model {	
 	
-	public String author;
 	public Date postedAt;
 	
 	@Lob
@@ -19,10 +18,12 @@ public class Comment extends Model {
 	
 	@ManyToOne
 	public Post post;
+	
+	@ManyToOne
+	public User author;
 
-	public Comment(String content, String author) {
-		this.content = content;
-		this.author = author;
+	public Comment(String content) {
+		this.content = content;		
 		this.postedAt = new Date();
 	}
 	

@@ -41,30 +41,32 @@ public static void visit(Long postid) {
 	render(user, loggedInUser, blog, post);   }	
 	
 	
-	public static void newComment(Long postid, String content) {
-		User fromUser = Start.getLoggedInUser();
-		String author = fromUser.firstName;		
-		Logger.info("Comment from user " + fromUser.firstName
-				+ "" + fromUser.lastName + ". " + content);		
+	public static void newComment(Long postid, String content) {				
 			
 		Post post = Post.findById(postid);
 		
-		Comment commentObj = new Comment(content, author);
+		Comment commentObj = new Comment(content);
 		post.addComment(commentObj);
 		post.save();
+		
+		User fromUser = commentObj.author;
+		
+		Logger.info("Comment from user " + fromUser.firstName
+				+ "" + fromUser.lastName + ". " + content);		
 		
 		show(postid);		
 	}
 	
 	public static void newVisitorComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
-		String author = fromUser.firstName;		
+		
 		Logger.info("Comment from user " + fromUser.firstName
 				+ "" + fromUser.lastName + ". " + content);		
 			
 		Post post = Post.findById(postid);		
 		
-		Comment commentObj = new Comment(content, author);
+		Comment commentObj = new Comment(content);
+		
 		post.addComment(commentObj);
 		post.save();
 		visit(postid);		

@@ -1,13 +1,6 @@
-User(homer):
-    firstName: Homer
-    lastName: Simpson
-    age: 40    
-    email: homer@simpson.com
-    password: secret
-
-User(marge):
-    firstName: Marge
-    lastName: Simpson
-    age: 38    
-    email: marge@simpson.com
-    password: secret
+Comment(comment1):    
+    content: You should have made this private Jesse    
+    author: walt
+    postedAt: 2013-04-22
+    post: post3
+    

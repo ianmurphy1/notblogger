@@ -47,13 +47,13 @@ public static void visit(Long postid) {
 	
 	public static void newComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
-		String author = fromUser.firstName;		
+			
 		Logger.info("Comment from user " + fromUser.firstName
 				+ "" + fromUser.lastName + ". " + content);		
 			
 		Post post = Post.findById(postid);
 		
-		Comment commentObj = new Comment(content, author);
+		Comment commentObj = new Comment(content);
 		post.addComment(commentObj);
 		post.save();
 		
@@ -62,13 +62,13 @@ public static void visit(Long postid) {
 	
 	public static void newVisitorComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
-		String author = fromUser.firstName;		
+		
 		Logger.info("Comment from user " + fromUser.firstName
 				+ "" + fromUser.lastName + ". " + content);		
 			
 		Post post = Post.findById(postid);		
 		
-		Comment commentObj = new Comment(content, author);
+		Comment commentObj = new Comment(content);
 		post.addComment(commentObj);
 		post.save();
 		visit(postid);		

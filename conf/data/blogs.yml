@@ -24,11 +24,16 @@ Blog(lizPubBlog):
     author: elizabeth
     
 Blog(johnnyPubBlog1):
-    name: Ladies
+    name: Tonight
     isPublic: true
     author: johnny
     
-Blog(johnnyPubBlog2):
-    name: Ladies Part Deux
+Blog(waltPubBlog1):
+    name: Test
     isPublic: true
-    author: johnny
+    author: walt
+    
+Blog(jessePubBlog1):
+    name: Response
+    isPublic: true
+    author: jesse
