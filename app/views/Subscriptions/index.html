@@ -3,7 +3,7 @@
 #{include 'nav/open.html' /}
         
 <li><a href="/home"> Home </a></li>
-<li class="active"><a href="/readinglist"> Reading List </a></li>
+<li class="active"><a href="/subscriptions"> Subscriptions </a></li>
 <li> <a href="/members">     Members </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
 
@@ -21,15 +21,21 @@
 
 <div class="well">
     <h3>Subscriptions</h3>
-
+    
+    #{if user.subscribing.size() > 0}    
     <ul class="unstyled">
       #{list items:user.subscribing, as:'subscribing'}
         <li>
           <a href="userprofile/${subscribing.id}"> ${subscribing.firstName} ${subscribing.lastName} </a><br> 
-          Remove Subscription <a class="btn btn-danger btn-mini" href="/readinglist/unsubscribe/${subscribing.id}"><i class="icon-minus icon-white"></i></a>
+          Remove Subscription <a class="btn btn-danger btn-mini" href="/subscriptions/unsubscribe/${subscribing.id}"><i class="icon-minus icon-white"></i></a>
           <hr>
-        </li>
-        
+        </li>        
       #{/list}
     </ul>
+    #{/if}
+    #{else}
+      You have no subscriptions at the moment ${user.firstName}.
+      Visit the <a href="/members">Members</a> page to see who you can be 
+      subscribing to.
+    #{/else}
   </div>

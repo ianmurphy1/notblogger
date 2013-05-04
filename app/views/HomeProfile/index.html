@@ -27,9 +27,15 @@
           <hr>
           <div class="well">
             <h4>Your Info</h4>
-            <p>Your Name: ${user.firstName} ${user.lastName}
-              <br> Your Age: ${user.age}
-              <br> Your Blogs: ${user.blogs.size()}
+            <p><strong>Your Name:</strong> ${user.firstName} ${user.lastName}</p>
+            <p><strong>Your Age:</strong> ${user.age}</p>
+              <p> <strong>Your Blogs: ${user.blogs.size()}</strong></p>
+              <p><strong>Profile Picture</strong>
+        <br>
+        <img src="/homeprofile/getpicture/${user.id}" class="img-rounded"></p>
+        <p><strong>Avatar</strong>
+        <br>
+        <img src="/homeprofile/getavatar/${user.id}" class="img-rounded"> 
             </p>
           </div>
           <div class="well">
@@ -38,8 +44,18 @@
             <hr>
             <p>
               <strong>Your Name:</strong> ${user.firstName} ${user.lastName}
-              <br>
-              <br>
+              <br></p>
+              <p>
+              <strong>Profile Picture</strong><br>
+              Your profile picture is visible on your user profile.<br>
+              </p>
+              
+              <p>
+                <strong>Avatar</strong><br>
+                Your avatar will be visible on your posts.             
+              </p>
+              
+              
               <strong>Your Visitor Message</strong> 
               #{ifnot user.visitorMessage == null} 
                 ${user.visitorMessage} <br> 
@@ -97,8 +113,7 @@
           <form class="form " method="post" action="/homeprofile/upavatar/${user.id}" enctype="multipart/form-data">
             <fieldset>
               <legend>Upload Avatar</legend>
-              <img src="/homeprofile/getthumbnail/${user.id}"
-              class="img-polaroid">
+              <img src="/homeprofile/getthumbnail/${user.id}" class="img-polaroid">
               <div class="control-group">
                 <div class="controls">
                   <input type="file" name="picture" value="">

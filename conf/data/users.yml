@@ -1,0 +1,41 @@
+User(booker):
+    firstName: Booker
+    lastName: DeWitt
+    age: 37
+    email: booker@gmail.com
+    password: pass
+    
+User(elizabeth):
+    firstName: Elizabeth 
+    lastName: Comstock
+    age: 18
+    email: elizabeth@gmail.com
+    password: pass
+
+User(jesse):
+    firstName: Jesse
+    lastName: Pinkman
+    age: 27
+    email: jesse@gmail.com
+    password: pass
+    
+User(walt):
+    firstName: Walter
+    lastName: White
+    age: 52
+    email: theotherww@gmail.com
+    password: pass
+
+User(freeman):
+    firstName: Gordon
+    lastName: Freeman
+    age: 33
+    email: gordon@gmail.com
+    password: pass
+
+User(johnny):
+    firstName: Johnny
+    lastName: Bravo
+    age: 34
+    email: johnny@gmail.com
+    password: pass

@@ -1,0 +1,9 @@
+Blog(pubBlog):
+    name: Happy
+    isPublic: true 
+    author: booker
+          
+Blog(privBlog):
+    name: Maybe
+    isPublic: false
+    author: booker

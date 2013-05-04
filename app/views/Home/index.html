@@ -22,7 +22,7 @@
 
 <div class="container">
   <div class="hero-unit hidden-phone">
-    <h1>Welcome to Not Blogger ${user.firstName}</h1>
+    <h1>Welcome to NotBlogger ${user.firstName}</h1>
     <p>
       <br> 
     </p>
@@ -59,13 +59,14 @@
   <div class="row">
   <div class="well span5">
   
-   <h4>Public Blogs</h4>
+   <h4 class="align-center">Your Public Blogs</h4>
     #{if publicBlogs.size > 0}
     #{list items:publicBlogs, as:'publicBlog'}
     <h5>
       <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
     </h5>    
     <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-mini">Delete</a>
+    <hr>
     #{/list}
     #{/if}
     #{else}
@@ -73,16 +74,18 @@
   #{/else}
   </div>
   
-  <div class="well span5">
-    <h4>Your Private Blogs</h4>
+  <div class="well span5 pull-right">
+    <h4 class="align-center">Your Private Blogs</h4>
     #{if privateBlogs.size > 0}
     #{list items:privateBlogs, as:'privateBlog'}
     <h5>
-      <a href="@{PrivateBlog.show(privateBlog.id)}">${privateBlog.name}</a>
+      <a href="@{PrivateBlog.show(privateBlog.id)}">${privateBlog.name} (${privateBlog.posts.size()})</a>
         </br>
     </h5>    
     <a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-mini">Delete</a>
-    <hr>
+   
+      <hr>
+    
     #{/list}
     #{/if}
     #{else}

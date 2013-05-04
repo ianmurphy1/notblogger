@@ -51,19 +51,18 @@ public class PrivateBlog extends Controller {
 		show(blog.id);
 	}
 	
-	public static void visit(Long userid, Long blogid) {
-		User user = User.findById(userid);
+	public static void visit(Long blogid) {
+		
 		Blog blog = Blog.findById(blogid);
+		
+		User user = blog.author;
 
 		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(reversePosts);
 
-		User loggedInUser = null;
-		if (session.contains("logged_in_userid")) {
-			String userId = session.get("logged_in_userid");
-			loggedInUser = User.findById(Long.parseLong(userId));
-		}
+		User loggedInUser = Start.getLoggedInUser();
+		
 
-		render(user, loggedInUser, reversePosts);
+		render(user, loggedInUser, reversePosts, blog);
 	}
 }

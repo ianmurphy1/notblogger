@@ -1,11 +1,19 @@
 #{extends 'main.html' /} 
 #{set title:"${user.firstName}'s Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
+<li><a href="/home"> Home </a></li>
+<li><a href="/subscriptions"> Subscriptions </a></li>
+<li> <a href="/members">     Members </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+
 </ul>
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
   <div class="span6 well">
+  
+    <img src="/homeprofile/getavatar/${user.id}" class="img-rounded pull-right"> 
+  
     <h4>${post.title}</h4>
     <p class="date">${post.postedAt.format('dd MMM yy')}
       ${post.postedAt.format('hh:mm')}</p>
@@ -51,9 +59,9 @@
     #{/else}
     #{/if}
     
-      
+      #{if post.comments.size() > 10}
       <a href="@{PrivateBlog.visit(blog.id)}" class="clearbutton btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
-    
+      #{/if}
   </div>  
   </div>
   

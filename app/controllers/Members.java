@@ -22,7 +22,7 @@ public class Members extends Controller {
 			users.remove(checkUser);
 		} 
 		
-		render(users);
+		render(user, users);
 	}
 	
 	public static void subscribe(Long id) {

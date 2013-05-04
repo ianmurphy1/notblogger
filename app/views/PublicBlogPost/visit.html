@@ -1,14 +1,26 @@
 #{extends 'main.html' /} 
 #{set title:"${user.firstName}'s Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
+#{if loggedInUser}
+<li><a href="/home"> Home </a></li>
+<li><a href="/subscriptions"> Subscriptions </a></li>
+<li> <a href="/members">     Members </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+#{/if}
+<li><a href="@{PublicBlog.visit(blog.id)}">Back To Blog</a></li>
+<li class="active"><a href="#">Post: ${post.title}</a></li>
 </ul>
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
   <div class="span6 well">
-    <h4>${post.title}</h4>
+  #{if loggedInUser}
+    <img src="/homeprofile/getavatar/${user.id}" class="img-rounded pull-right"> 
+  #{/if}
+    <h4>${post.title}  </h4>
     <p class="date">${post.postedAt.format('dd MMM yy')}
       ${post.postedAt.format('hh:mm')}</p>
+      
 
     <p>${post.content}</p>
     <hr>

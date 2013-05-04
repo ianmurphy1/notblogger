@@ -4,6 +4,7 @@
         
 <li><a href="/home"> Home </a></li>
 <li><a href="/subscriptions"> Subscriptions </a></li>
+<li> <a href="/members">     Members </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
 
 </ul>
@@ -39,6 +40,11 @@
           </h5> 
         #{/list}
       #{/if}
+      #{else}
+        <p>
+          ${user.firstName} is a slacker. They have no public blogs at the moment.
+        </p>
+      #{/else}
     </div>
     <div class="well pull-right span5">
       <h4>Private Blogs</h4>
@@ -49,6 +55,12 @@
           </h5> 
         #{/list}
       #{/if}
+      #{else}
+        <p>
+          ${user.firstName} is a slacker. They have no private blogs at the moment.
+        </p>
+      #{/else}
     </div>
   </div>
+  <a href="/home" class="btn btn-success">Back Home</a>
 </div>

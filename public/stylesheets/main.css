@@ -21,3 +21,9 @@ p.postbutton {
 .clearbutton {
 	margin-top: 10px;
 }
+
+.infotag
+{
+	padding-top:4px;
+	font-size: 90%;
+}

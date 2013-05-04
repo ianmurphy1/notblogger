@@ -5,8 +5,10 @@
 #{if loggedInUser}        
 <li><a href="/home"> Home </a></li>
 <li><a href="/subscriptions"> Subscriptions </a></li>
+<li> <a href="/members">     Members </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
 #{/if}
+<li class="active"><a href="#">Blog: ${blog.name}</a></li>
 </ul>
                     
 #{include 'nav/close.html' /}
