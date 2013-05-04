@@ -35,7 +35,7 @@
       #{if publicBlogs.size > 0}
         #{list items: publicBlogs, as:'publicBlog'}
           <h5>
-            <a href="@{PublicBlog.visit(user.id, publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
+            <a href="@{PublicBlog.visit(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
           </h5> 
         #{/list}
       #{/if}

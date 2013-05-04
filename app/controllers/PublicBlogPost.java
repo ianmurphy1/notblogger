@@ -24,35 +24,26 @@ public static void show(Long postid) {
 		
 		render(post, blog, user);
 	}
+
+public static void visit(Long postid) {		
 	
-	public static void visit(Long postid, Long userid) {
-		boolean loggedIn = false;
-
-		if (session.get("logged_in_userid") != null) {
-			loggedIn = true;
-			User currentUser = Start.getLoggedInUser();
-
-			User user = User.findById(userid);
-
-			Logger.info("Post ID = " + postid);
-			Post post = Post.findById(postid);
-			render(user, post, loggedIn, currentUser);
-		} else {
-			User user = User.findById(userid);
-
-			Logger.info("Post ID = " + postid);
-			Post post = Post.findById(postid);
-			render(user, post, loggedIn);			
-		}
-	}
+	Post post = Post.findById(postid);
 	
-	public static void guestVisit(Long postid) {		
-				
-		Post post = Post.findById(postid);
-		Blog blog = post.blog;
+	Blog blog = post.blog;
+	
+	User user = blog.author;
 
-		render(post, blog);
+	List<Post> reversePosts = new ArrayList<Post>(blog.posts);
+	Collections.reverse(reversePosts);
+
+	User loggedInUser = null;
+	if (session.contains("logged_in_userid")) {
+		String userId = session.get("logged_in_userid");
+		loggedInUser = User.findById(Long.parseLong(userId));
 	}
+
+	render(user, loggedInUser, blog, post);   }	
+	
 	
 	public static void newComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
@@ -69,26 +60,25 @@ public static void show(Long postid) {
 		show(postid);		
 	}
 	
-	public static void newVisitorComment(Long userid, Long postid, String content) {
+	public static void newVisitorComment(Long postid, String content) {
 		User fromUser = Start.getLoggedInUser();
 		String author = fromUser.firstName;		
 		Logger.info("Comment from user " + fromUser.firstName
 				+ "" + fromUser.lastName + ". " + content);		
 			
-		Post post = Post.findById(postid);			
-		User user = User.findById(userid);
+		Post post = Post.findById(postid);		
 		
 		Comment commentObj = new Comment(content, author);
 		post.addComment(commentObj);
 		post.save();
-		visit(postid, user.id);		
+		visit(postid);		
 	}
 	
 	public static void deleteComment(Long commentid) {			
+			
+		Comment theComment = Comment.findById(commentid);		
+		Post post = theComment.post;		
 		
-		Comment theComment = Comment.findById(commentid);
-		
-		Post post = theComment.post;
 		
 		Logger.info("Comment " + theComment.content + " is now deleted");
 		
@@ -98,4 +88,21 @@ public static void show(Long postid) {
 		
 		show(post.id);
 	}
+	
+	public static void deleteVisitorComment(Long commentid) {			
+		
+		Comment theComment = Comment.findById(commentid);		
+		Post post = theComment.post;		
+		
+		
+		Logger.info("Comment " + theComment.content + " is now deleted");
+		
+		post.removeComment(theComment);
+		post.save();
+		theComment.delete();
+		
+		visit(post.id);
+	}
+	
+	
 }

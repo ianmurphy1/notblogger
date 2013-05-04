@@ -66,17 +66,7 @@ public class PublicBlog extends Controller {
 		}
 
 		render(user, loggedInUser, blog, reversePosts);
-	}
-	
-    public static void guestVisit(Long blogid) {		
-	    		
-		Blog blog = Blog.findById(blogid);
-
-		List<Post> reversePosts = new ArrayList<Post>(blog.posts);
-		Collections.reverse(reversePosts);		
-
-		render(blog, reversePosts);
-	}
+	}    
 }
 
 

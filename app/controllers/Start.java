@@ -65,7 +65,7 @@ public class Start extends Controller {
 		Logger.info(firstName + " " + lastName + " " + email + " " + password);
 		User user = new User(firstName, lastName, age, email, password);
 		user.save();
-		index();
+		login();
 	}
 
 	public static void authenticate(String email, String password) {

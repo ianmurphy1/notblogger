@@ -45,6 +45,11 @@ POST    /editprofile/changepassword/{id}        EditProfile.changePassword
 GET     /userprofile/{id}                       UserProfile.visit
 
 
+# Public Blog Post
+POST  /publicblogpost/newcomment/                     PublicBlogPost.newComment
+POST  /publicblogpost/newvisitorcomment/              PublicBlogPost.newVisitorComment
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
