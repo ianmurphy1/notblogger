@@ -10,6 +10,7 @@ GET     /                                       Start.index
 GET     /login                                  Start.login
 GET     /signup                                 Start.signup
 GET     /logout                                 Start.logout
+DELETE  /delete/{id}                            Start.deleteUser
 POST    /register                               Start.register
 POST    /authenticate                           Start.authenticate
 

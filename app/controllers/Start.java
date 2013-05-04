@@ -76,5 +76,12 @@ public class Start extends Controller {
 		session.put("logged_in_userid", user.id);
 		Home.index();
 	}
+	
+	public static void deleteUser(Long userid) {
+		User user = User.findById(userid);  
+		
+		user.delete();		  
+		  index();
+	  }
 
 }
