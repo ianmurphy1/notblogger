@@ -1,9 +1,34 @@
-Blog(pubBlog):
+Blog(bookPubBlog):
     name: Happy
     isPublic: true 
     author: booker
           
-Blog(privBlog):
+Blog(bookPrivBlog):
     name: Maybe
     isPublic: false
     author: booker
+    
+Blog(lizPrivBlog1):
+    name: School 
+    isPublic: false
+    author: elizabeth
+  
+Blog(lizPrivBlog2):
+    name: Home
+    isPublic: false
+    author: elizabeth
+
+Blog(lizPubBlog):
+    name: Stories
+    isPublic: true
+    author: elizabeth
+    
+Blog(johnnyPubBlog1):
+    name: Ladies
+    isPublic: true
+    author: johnny
+    
+Blog(johnnyPubBlog2):
+    name: Ladies Part Deux
+    isPublic: true
+    author: johnny
