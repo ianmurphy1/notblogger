@@ -2,11 +2,11 @@
 #{set title:"${blog.name} Blog by ${blog.author}" /}
 
 #{include 'nav/open.html' /}
-        
+#{if loggedInUser}        
 <li><a href="/home"> Home </a></li>
 <li><a href="/subscriptions"> Subscriptions </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
-
+#{/if}
 </ul>
                     
 #{include 'nav/close.html' /}

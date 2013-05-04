@@ -1,10 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title:"${blog.name} Blog" /}
+#{include 'nav/open.html' /}
+        
+<li><a href="/home"> Home </a></li>
+<li><a href="/readinglist"> Reading List </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
 
-</body>
-</html>
+</ul>
+                    
+#{include 'nav/close.html' /}
+
+<div class="row-fluid">
+  #{if posts.size > 0}
+  <div id ="content" class="well span8">
+    <h3>Blog Posts</h3>
+    #{list items:blog.posts, as:'post'}
+    <h4>
+      <a href="@{PrivateBlogPost.show(post.id)}"> ${post.title} </a></br>
+    </h4>
+    <p class="date">On ${post.postedAt.format('dd MMM yy')} at
+      ${post.postedAt.format('hh:mm')}</p>
+    <a href="@{PrivateBlog.deletePost(post.id)}" class="btn btn-mini">Delete</a>
+    <hr>
+    #{/list}
+
+  </div>
+  #{/if} #{else}
+  <p>To add a post to ${blog.name} click the button bellow</p>
+  #{/else}
+  
+</div>
+
+<div id="createpost" class="row-fluid">
+  <form id="newpost" class="form well span7" method="post" action="@{PrivateBlog.newPost(posttitle, content, blog.id)}">
+    <fieldset>
+      <legend>Create New Post</legend>
+      <div class="control-group">
+        <label class="control-label">Title</label><br>
+        <div class="controls">
+          <textarea name="posttitle" class="field span11" rows="1"
+            placeholder="Blog Title..."></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Post Content</label>
+        <div class="controls">
+          <textarea name="content" class="field span11" rows="8"
+            placeholder="Your ramblings..."></textarea>
+          <br>
+        </div>
+      </div>
+      <div class="form-actions">
+      <button id="hidePostCreator" class="btn" type="button">Cancel</button> 
+        <input class="btn btn-primary" type="submit" value="Post Blog" />
+      </div>
+    </fieldset>
+  </form>
+</div>
+<p>
+    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+  </p>
+<a href="/home" class="btn btn-success">Back Home</a>
+
+<script src="@{'/public/javascripts/blogger.js'}"></script>
+
+<script>
+
+  $("#createpost").hide();
+
+  $(document).ready(function() {
+    loadBlogEventHandlers();
+  });
+     
+</script>

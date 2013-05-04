@@ -25,7 +25,7 @@
   <h3>Public Blogs</h3>
   #{list items:showThese, as:'blog'}
       <h4>
-        <a href="@{PublicBlog.visit(blog.id)}"> ${blog.author.firstName}'s ${blog.name} Blog </a> 
+        <a href="@{PublicBlog.visit(blog.id)}"> ${blog.author.firstName}'s ${blog.name} Blog (${blog.posts.size()})</a> 
       </h4> 
       <hr>
     #{/list}  

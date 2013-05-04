@@ -1,10 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title:"${blog.name} Blog by ${blog.author}" /}
 
-</body>
-</html>
+#{include 'nav/open.html' /}
+
+<li><a href="/home"> Home </a></li>
+<li><a href="/subscriptions"> Subscriptions </a></li>
+<li><a href="/homeprofile"> My Profile </a></li>
+
+</ul>
+                    
+#{include 'nav/close.html' /}
+
+<div class="row-fluid">
+  #{if reversePosts.size > 0}
+  <div id ="content" class="well span8">
+    <h3>Blog Posts</h3>
+    #{list items:blog.posts, as:'post'}
+    <h4>
+      <a href="@{PrivateBlogPost.visit(post.id)}"> ${post.title} </a></br>
+    </h4>
+    <p class="date">On ${post.postedAt.format('dd MMM yy')} at
+      ${post.postedAt.format('hh:mm')}</p>
+    
+    <hr>
+    #{/list}
+
+  </div>
+  #{/if} #{else}
+  <p>There are no posts in this blog.</p>
+  #{/else}  
+</div>
+
+
+#{if loggedInUser}
+<a href="/userprofile/${user.id}" class="btn btn-success">Back To ${user.firstName}'s Profile</a>
+#{/if}
+#{else}
+  <a href="/" class="btn btn-success">Back To Home</a>
+#{/else}

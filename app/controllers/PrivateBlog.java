@@ -19,22 +19,36 @@ public class PrivateBlog extends Controller {
 		List<Post> posts = new ArrayList<Post>(blog.posts);
 		Collections.reverse(posts);
 		
-		render(posts, blog);
+		render(blog, posts);
 	}
 	
-	public static void newPost(String title, String content, Long blogid) {
+	public static void newPost(String posttitle, String content, Long blogid) {
 		User user = Start.getLoggedInUser();
 		String author = user.firstName;
 		
 		Blog blog = Blog.findById(blogid);	
 		
 		
-		Post post = new Post(title, content, author);
+		Post post = new Post(posttitle, content, author);
 		blog.addPost(post);
 		user.save();
 		
-		Logger.info("title: " + title + " content: " + content);
+		Logger.info("title: " + posttitle + " content: " + content);
 		show(blogid);
+	}
+	
+	public static void deletePost(Long postid) {
+		User user = Start.getLoggedInUser();
+		
+		Post post = Post.findById(postid);
+		
+		Blog blog = post.blog;		
+		blog.posts.remove(post);
+		
+		user.save();
+		post.delete();
+		
+		show(blog.id);
 	}
 	
 	public static void visit(Long userid, Long blogid) {

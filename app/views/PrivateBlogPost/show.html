@@ -15,7 +15,7 @@
     <p>${post.content}</p>
     <hr>
     <div id="createcomment">
-   <form class="form" action="@{PublicBlogPost.newComment(post.id)}" method="post">
+   <form class="form" action="@{PrivateBlogPost.newComment(post.id)}" method="post">
       <div class="control-group">
         <label class="control-label">Add A Comment</label><br>
         <div class="controls">
@@ -28,7 +28,7 @@
     </form>
   </div>
     <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
-    <a href="@{PublicBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
+    <a href="@{PrivateBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     <hr>
     <h5>Comments</h5>
     #{if post.comments.size() > 0} 
@@ -37,7 +37,7 @@
         <p class="date">
           Left By ${comment.author}<br> ${comment.postedAt.since()}
         </p>
-        <a href="@{PublicBlogPost.deleteComment(comment.id)}" class="btn btn-mini">Delete</a>
+        <a href="@{PrivateBlogPost.deleteComment(comment.id)}" class="btn btn-mini">Delete</a>
         <hr>
       #{/list} 
     #{/if}

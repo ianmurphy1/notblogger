@@ -1,5 +1,5 @@
 #{extends 'main.html' /} 
-#{set title:"${post.author}'s Blog Post: ${post.title}" /} 
+#{set title:"${user.firstName}'s Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
 </ul>
 #{include 'nav/close.html' /}
@@ -12,71 +12,68 @@
 
     <p>${post.content}</p>
     <hr>
-
-
-    <h5>Comments</h5>
-      #{if post.comments.size() > 0} 
-        #{list items:post.comments, as:'comment'}
-          <p>${comment.content}</p>
-            <p class="date">
-              Left By ${comment.author}
-              ${comment.postedAt.since()}
-            </p>
-            #{if (loggedIn && comment.author == currentUser.firstName)} 
-              <a href="@{BlogPost.deleteComment(post.id, comment.id)}" class="btn btn-mini">Delete</a> 
-            #{/if}
-            <hr>
-          #{/list}
-        #{/if} 
-      #{else}
-        <p>
-          There are no comments!! Why not be the first!
-        </p>
-      #{/else}
-  </div>
-</div>
-#{if loggedIn}
-<div class="clearfix"></div>
-<p class="clearbutton">
-  <a href="@{Blog.visit(user.id)}" class="btn btn-primary"><i
-    class="icon-backward"></i> Back to ${user.firstName}'s Blog </a><br>
-</p>
-#{/if} #{if loggedIn}
-
-<div class="clearfix"></div>
-
-<div class="row-fluid">
-  <div class="span2">
-
-    <form class="form well" action="/blogpost/newvisitorcomment/" method="post">
+    
+    <div id="createcomment">
+   <form class="form" action="@{PrivateBlogPost.newVisitorComment(post.id)}" method="post">
       <div class="control-group">
         <label class="control-label">Add A Comment</label><br>
         <div class="controls">
-          <textarea class="input-block-level"name="content" id="content"
+          <textarea class="input-block-level" name="content" id="content"
             placeholder="Enter Your Comment..."></textarea>
-        </div>
-        <input type="hidden" name="userid" value=${user.id} />
-        <input type="hidden" name="postid" value=${post.id} />
+        </div>        
       </div>
-      <button type="submit" class="btn">Add Comment</button>
+      <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
+      <button type="submit" class="btn btn-success">Add Comment</button>
     </form>
-
   </div>
-
-</div>
-#{/if} #{else}
-<div class="clearfix"></div>
-<div class="row-fluid">
-  <div class="span5">
-    <p class="clearbutton">
-      <a href="/signup" class="btn btn-info">Signup</a> or <a
-        href="/login" class="btn btn-success">Login</a> to leave
-      comments.<br>
-    </p>
-    <p class="clearbutton">
-      <a href="@{Blog.visit(user.id)}" class="btn btn-primary"><i
-        class="icon-backward"></i> Back to ${user.firstName}'s Blog </a>
-    </p>
+  #{if loggedInUser}
+  
+    <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
+    <a href="@{PrivateBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
+    <hr>
+    
+    
+    <h5>Comments</h5>
+    #{if post.comments.size() > 0} 
+      #{list items:post.comments, as:'comment'}
+        <p>${comment.content}</p>
+        <p class="date">
+          Left By ${comment.author}<br> ${comment.postedAt.since()}
+        </p>
+        #{if comment.author == loggedInUser.firstName} 
+              <a href="@{PrivateBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini">Delete</a> 
+            #{/if}
+        <hr>
+      #{/list} 
+    #{/if}    
+    #{else} 
+      There are no comments!! Why not be the first!
+    #{/else}
+    #{/if}
+    
+      
+      <a href="@{PrivateBlog.visit(blog.id)}" class="clearbutton btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
+    
+  </div>  
   </div>
+  
+
+
+
+    
 </div>
-#{/else}
+
+
+    
+    
+    
+
+  <script src="@{'/public/javascripts/blogger.js'}"></script>
+<script>
+    $("#createcomment").hide();
+  </script>
+<script>
+  $(document).ready(function() {
+    loadPostEventHandlers();
+  });     
+</script>
