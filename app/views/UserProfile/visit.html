@@ -55,6 +55,11 @@
           </h5> 
         #{/list}
       #{/if}
+      #{elseif !isSubscribing}
+        <p>
+          You are not subscribed to ${user.firstName} so you can't view their private posts.
+        </p>
+      #{/elseif}
       #{else}
         <p>
           ${user.firstName} is a slacker. They have no private blogs at the moment.

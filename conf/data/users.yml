@@ -11,6 +11,8 @@ User(elizabeth):
     age: 18
     email: elizabeth@gmail.com
     password: pass
+    subscribing:
+                - booker
 
 User(jesse):
     firstName: Jesse
@@ -18,6 +20,9 @@ User(jesse):
     age: 27
     email: jesse@gmail.com
     password: pass
+    subscribing:
+                - elizabeth
+                - booker
     
 User(walt):
     firstName: Walter
@@ -25,6 +30,9 @@ User(walt):
     age: 52
     email: theotherww@gmail.com
     password: pass
+    subscribing:
+                - jesse
+                - booker
 
 User(freeman):
     firstName: Gordon
@@ -32,6 +40,10 @@ User(freeman):
     age: 33
     email: gordon@gmail.com
     password: pass
+    subscribing:
+                - walt
+                - booker
+                - elizabeth
 
 User(johnny):
     firstName: Johnny
