@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import java.util.*;
+import play.db.jpa.Model;
 import models.*;
 
 public class EditProfile extends Controller {

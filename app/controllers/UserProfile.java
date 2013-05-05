@@ -3,9 +3,9 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import models.Blog;
-import models.User;
+import play.db.jpa.Model;
+import models.*;
+import play.*;
 import play.Logger;
 import play.mvc.Controller;
 

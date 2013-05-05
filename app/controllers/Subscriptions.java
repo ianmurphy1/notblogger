@@ -2,10 +2,11 @@ package controllers;
 
 import java.util.List;
 import java.util.Set;
+import play.db.jpa.Model;
 
+import play.*;
 
-
-import models.User;
+import models.*;
 import play.Logger;
 import play.mvc.Controller;
 

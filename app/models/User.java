@@ -50,6 +50,9 @@ public class User extends Model {
 	public List<Blog> blogs;
 	
 	
+	@OneToMany(mappedBy="author", cascade = CascadeType.ALL)
+	public List<Comment> comments;
+	
 	public User(String firstName, String lastName, int age, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -57,6 +60,7 @@ public class User extends Model {
 		this.email = email;
 		this.password = password;
 		this.blogs = new ArrayList<Blog>();
+		this.comments = new ArrayList<Comment>();
 	}
 	
 	public void addBlog(Blog blog) {

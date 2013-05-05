@@ -1,11 +1,10 @@
 package controllers;
 
+import play.*;
 import java.util.List;
 import java.util.Set;
-
-
-
-import models.User;
+import play.db.jpa.Model;
+import models.*;
 import play.mvc.Controller;
 
 public class Members extends Controller {
