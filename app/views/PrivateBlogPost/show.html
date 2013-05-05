@@ -27,7 +27,7 @@
       <div class="control-group">
         <label class="control-label">Add A Comment</label><br>
         <div class="controls">
-          <textarea class="input-block-level" name="content" id="content"
+          <textarea class="span4" name="content" id="content"
             placeholder="Enter Your Comment..."></textarea>
         </div>        
       </div>
@@ -38,11 +38,14 @@
     <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
     <a href="@{PrivateBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     <hr>
+    
+    <div class="comments">
     <h5>Comments</h5>
     #{if post.comments.size() > 0} 
       #{list items:post.comments, as:'comment'}
-        <p>${comment.content}</p>
+        ${comment.content}
         <p class="date">
+        <a href="@{PrivateBlogPost.deleteComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a>
         #{if comment.author == user}
           Left By You<br> ${comment.postedAt.since()}
         #{/if}
@@ -50,13 +53,14 @@
           Left By <a href="/userprofile/${comment.author.id}">${comment.author.firstName}</a>
         #{/else}  
         </p>
-        <a href="@{PrivateBlogPost.deleteComment(comment.id)}" class="btn btn-mini">Delete</a>
+        
         <hr>
       #{/list} 
     #{/if}
     #{else} 
       No comments yet. 
     #{/else}
+    </div>
   </div>  
   </div>
   

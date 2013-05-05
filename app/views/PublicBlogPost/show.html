@@ -28,7 +28,7 @@
       <div class="control-group">
         <label class="control-label">Add A Comment</label><br>
         <div class="controls">
-          <textarea class="input-block-level" name="content" id="content"
+          <textarea class="span4" name="content" id="content"
             placeholder="Enter Your Comment..."></textarea>
         </div>        
       </div>
@@ -45,6 +45,7 @@
         <p>${comment.content}</p>
         <p class="date">
           #{if comment.author == user}
+          <a href="@{PublicBlogPost.deleteComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a>
           Left By You <br> 
           #{/if}
           #{else}
@@ -52,7 +53,7 @@
           #{/else}
           ${comment.postedAt.since()}
         </p>
-        <a href="@{PublicBlogPost.deleteComment(comment.id)}" class="btn btn-mini">Delete</a>
+        
         <hr>
       #{/list} 
     #{/if}

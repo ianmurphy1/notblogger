@@ -64,9 +64,10 @@
     #{if publicBlogs.size > 0}
     #{list items:publicBlogs, as:'publicBlog'}
     <h5>
-      <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
-    </h5>    
-    <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-mini">Delete</a>
+      <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a>
+       
+    <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-danger btn-mini pull-right">Delete ${publicBlog.name}</a>
+    </h5> 
     <hr>
     #{/list}
     #{/if}
@@ -81,10 +82,10 @@
     #{list items:privateBlogs, as:'privateBlog'}
     <h5>
       <a href="@{PrivateBlog.show(privateBlog.id)}">${privateBlog.name} (${privateBlog.posts.size()})</a>
-        </br>
-    </h5>    
-    <a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-mini">Delete</a>
-   
+        
+       
+    <a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-danger btn-mini pull-right">Delete ${privateBlog.name}</a>
+   </h5>
       <hr>
     
     #{/list}

@@ -44,25 +44,26 @@
     <a href="@{PublicBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     <hr>
     
-    
+    <div class="comments">
     <h5>Comments</h5>
     #{if post.comments.size() > 0} 
       #{list items:post.comments, as:'comment'}
         <p>${comment.content}</p>
+        #{if (loggedInUser && comment.author == loggedInUser)} 
+              <a href="@{PublicBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a> 
+            #{/if}
         <p class="date">
           #{if loggedInUser == comment.author}        
             By You 
           #{/if}
           #{else}
-            Left By 
+            Left By <a href="/userprofile/${comment.author.id}">${comment.author.firstName}</a>
                    
           #{/else}
         
           
         </p>
-        #{if (loggedInUser && comment.author == loggedInUser)} 
-              <a href="@{PublicBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini">Delete</a> 
-            #{/if}
+        
         <hr>
       #{/list} 
     #{/if}    
@@ -77,6 +78,7 @@
       
       <a href="@{PublicBlog.visit(blog.id)}" class="clearbutton btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     #{/else}
+    
   </div>  
   </div>
   

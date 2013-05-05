@@ -20,10 +20,11 @@
     #{list items:blog.posts, as:'post'}
     <h4>
       <a href="@{PublicBlogPost.show(post.id)}"> ${post.title} </a></br>
+      <a href="@{PublicBlog.deletePost(post.id)}" class="btn btn-mini btn-danger pull-right">Delete ${post.title}</a>
     </h4>
-    <p class="date">On ${post.postedAt.format('dd MMM yy')} at
+    <p class="date">Created: ${post.postedAt.format('dd MMM yy')} at
       ${post.postedAt.format('hh:mm')}</p>
-    <a href="@{PublicBlog.deletePost(post.id)}" class="btn btn-mini">Delete</a>
+    
     <hr>
     #{/list}
 

@@ -20,32 +20,48 @@
   
   <div class="row">
     <div class="span5 well">
-      <h4>Members List</h4>
-      <ul class="unstyled">
-        #{list items:users, as:'member'}
-          <li class="well"><a href="userprofile/${member.id}">${member.firstName} ${member.lastName}</a>
-            <p class="infotag"> Subscribe <a href="members/subscribe/${member.id}" title="Subscribe"><i class="icon-plus"></i></a> 
-            </p>
-            <p>
-              <strong>Visitor Message</strong>
-              <br> ${member.visitorMessage}
-            </p>
-          </li>
-        #{/list}</ul>
+     <h3>Members</h3>
+    #{if users.size() > 0}
+    <table class="table table-striped table-bordered table-hover">
+    <th>Name</th>
+    <th>No. of Blogs</th>
+    <th>Subscribe</th>
+      #{list items:users, as:'member'}
+      <tr>
+        <td><a href="userprofile/${member.id}">${member.firstName} ${member.lastName}</a>          
+        </td>
+        <td>${member.blogs.size()}</td>
+        <td><a href="members/subscribe/${member.id}" title="Subscribe"><i class="icon-plus"></i></a> </td>
+      </tr>
+      #{/list}
+    </table>
+    #{/if}
     </div>
     
     <div class="well pull-right span5">
       <h4>Already Subscribed</h4>
-      <ul class="unstyled">
+     
+    
+    #{if user.subscribing.size() > 0}
+    <table class="table table-striped table-bordered table-hover">
+    <th>Name</th>
+    <th>No. of Blogs</th>    
       #{list items:user.subscribing, as:'subscribing'}
-        <li>
-          <a href="userprofile/${subscribing.id}"> ${subscribing.firstName} ${subscribing.lastName} </a><br> 
-        </li>
-        
+      <tr>
+        <td><a href="userprofile/${subscribing.id}">${subscribing.firstName} ${subscribing.lastName}</a>          
+        </td>
+        <td>${subscribing.blogs.size()}</td>        
+      </tr>
       #{/list}
-    </ul>
+    </table>
+    #{/if}
+    #{else}
+      You aren't subscribed to anyone yet ${user.firstName}
+    #{/else}
     </div>
   </div>
+  
+  
 </div>
   
 </div>

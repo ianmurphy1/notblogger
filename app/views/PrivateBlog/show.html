@@ -16,11 +16,12 @@
     <h3>Posts in ${blog.name}</h3>
     #{list items:blog.posts, as:'post'}
     <h4>
-      <a href="@{PrivateBlogPost.show(post.id)}"> ${post.title} </a></br>
+      <a href="@{PrivateBlogPost.show(post.id)}"> ${post.title} </a>
+      <a href="@{PrivateBlog.deletePost(post.id)}" class="btn btn-danger btn-mini pull-right">Delete ${post.title}</a>
     </h4>
     <p class="date">On ${post.postedAt.format('dd MMM yy')} at
       ${post.postedAt.format('hh:mm')}</p>
-    <a href="@{PrivateBlog.deletePost(post.id)}" class="btn btn-danger btn-mini">Delete ${post.title}</a>
+    
     <hr>
     #{/list}
 
