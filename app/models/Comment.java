@@ -22,8 +22,9 @@ public class Comment extends Model {
 	@ManyToOne
 	public User author;
 
-	public Comment(String content) {
-		this.content = content;		
+	public Comment(String content, User author) {
+		this.content = content;
+		this.author = author;
 		this.postedAt = new Date();
 	}
 	

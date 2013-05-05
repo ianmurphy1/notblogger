@@ -1,11 +1,15 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import java.util.*;
+import models.Blog;
+import models.User;
 
-import models.*;
+
+import play.Logger;
+import play.mvc.Controller;
 
 public class Start extends Controller {
 	public static void index() {
@@ -78,10 +82,10 @@ public class Start extends Controller {
 	}
 	
 	public static void deleteUser(Long userid) {
-		User user = User.findById(userid);  
+		User user = User.findById(userid);
+		user.delete();
 		
-		user.delete();		  
-		  index();
-	  }
+		index();
+	}
 
 }

@@ -3,6 +3,5 @@ package controllers;
 import play.*;
 import play.mvc.*;
 
-public class Blogs extends CRUD 
-{    
+public class Blogs extends CRUD {    
 }

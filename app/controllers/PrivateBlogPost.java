@@ -12,16 +12,19 @@ import play.Logger;
 import play.mvc.Controller;
 
 public class PrivateBlogPost extends Controller {
-public static void show(Long postid) {
+	public static void show(Long postid) {
 		
-        Logger.info("Post ID = " + postid);
+		User user = Start.getLoggedInUser();
+
+		Logger.info("Post ID = " + postid);
 		Post post = Post.findById(postid);
 		Blog blog = post.blog;
-		User user = blog.author;
+		User author = blog.author;
 		
-		//List<Comment> comments = Comment.find("byPostid", post.id).fetch();
-		//Collections.reverse(comments);
-		
+		if (!(user.equals(author))) {
+			visit(postid);
+		}		
+
 		render(post, blog, user);
 	}
 
@@ -29,27 +32,29 @@ public static void visit(Long postid) {
 	
 	Post post = Post.findById(postid);
 	
-	Blog blog = post.blog;
-	
+	Blog blog = post.blog;	
 	User user = blog.author;
 
 	List<Post> reversePosts = new ArrayList<Post>(blog.posts);
 	Collections.reverse(reversePosts);
 
 	User loggedInUser = Start.getLoggedInUser();
+	
+	if (user.equals(loggedInUser)) {
+		show(postid);
+	}
 
 	render(user, loggedInUser, blog, post);   }	
 	
 	
 	public static void newComment(Long postid, String content) {				
-			
+		User fromUser = Start.getLoggedInUser();	
 		Post post = Post.findById(postid);
 		
-		Comment commentObj = new Comment(content);
+		Comment commentObj = new Comment(content, fromUser);
 		post.addComment(commentObj);
 		post.save();
-		
-		User fromUser = commentObj.author;
+				
 		
 		Logger.info("Comment from user " + fromUser.firstName
 				+ "" + fromUser.lastName + ". " + content);		
@@ -65,7 +70,7 @@ public static void visit(Long postid) {
 			
 		Post post = Post.findById(postid);		
 		
-		Comment commentObj = new Comment(content);
+		Comment commentObj = new Comment(content, fromUser);
 		
 		post.addComment(commentObj);
 		post.save();

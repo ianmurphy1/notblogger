@@ -2,6 +2,8 @@ package models;
 
 import javax.persistence.Entity;
 
+import play.data.validation.Email;
+import play.data.validation.Required;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
@@ -18,12 +20,25 @@ import javax.persistence.Table;
 
 @Entity
 public class User extends Model {
+	
+	@Required
 	public String   firstName;
+	
+	@Required
 	public String   lastName;	
+	
+	@Required
+	@Email
 	public String   email;
+	
+	@Required
 	public String   password;
-	public String   visitorMessage;
+	
+	@Required
 	public int      age;
+	
+	
+	public String   visitorMessage;
 	public Blob     profilePicture;
 	public Blob     avatar;
 	

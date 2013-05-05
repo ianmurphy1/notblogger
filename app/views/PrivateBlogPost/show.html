@@ -5,7 +5,8 @@
 <li><a href="/subscriptions"> Subscriptions </a></li>
 <li> <a href="/members">     Members </a></li>
 <li><a href="/homeprofile"> My Profile </a></li>
-
+<li><a href="@{PrivateBlog.show(blog.id)}">Back To Blog</a></li>
+<li class="active"><a href="#">Post: ${post.title}</a></li>
 </ul>
 #{include 'nav/close.html' /}
 
@@ -16,9 +17,8 @@
   
     <h4>${post.title}</h4>
     <p class="date">
-      ${post.postedAt.format('dd MMM yy')}<br> At
-      ${post.postedAt.format('hh:mm')} By You
-    </p>
+      ${post.postedAt.format('dd MMM yy')}<br> 
+      At ${post.postedAt.format('hh:mm')} 
 
     <p>${post.content}</p>
     <hr>
@@ -43,7 +43,12 @@
       #{list items:post.comments, as:'comment'}
         <p>${comment.content}</p>
         <p class="date">
-          Left By ${comment.author}<br> ${comment.postedAt.since()}
+        #{if comment.author == user}
+          Left By You<br> ${comment.postedAt.since()}
+        #{/if}
+        #{else}
+          Left By <a href="/userprofile/${comment.author.id}">${comment.author.firstName}</a>
+        #{/else}  
         </p>
         <a href="@{PrivateBlogPost.deleteComment(comment.id)}" class="btn btn-mini">Delete</a>
         <hr>

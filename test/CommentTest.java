@@ -27,7 +27,7 @@ public class CommentTest extends UnitTest {
 		blogA = new Blog("Blog1", true);		
 		bob.addBlog(blogA);			
 		bob.save();
-		postA = new Post("Title1", "Post 1 content", bob.firstName);
+		postA = new Post("Title1", "Post 1 content", bob);
 		postA.save();
 		blogA.addPost(postA);		
 		blogA.save();
@@ -42,7 +42,7 @@ public class CommentTest extends UnitTest {
 	public void testCreateComment() {
 		User user = User.findByEmail("bob@gmail.com");		
 		
-		Comment commentA = new Comment("This is a comment");		
+		Comment commentA = new Comment("This is a comment", bob);		
 		Post post = postA;		
 		post.addComment(commentA);
 		postA.save();
@@ -63,10 +63,10 @@ public class CommentTest extends UnitTest {
 		
 		Post post = postA;	
 		
-		Comment commentA = new Comment("First");				
+		Comment commentA = new Comment("First", user);				
 		post.addComment(commentA);
 		
-		Comment commentB = new Comment("Second");
+		Comment commentB = new Comment("Second", user);
 		post.addComment(commentB);
 		postA.save();
 		blogA.save();
@@ -87,10 +87,10 @@ public class CommentTest extends UnitTest {
 		
 		Post post = postA;	
 		
-		Comment commentA = new Comment("First");				
+		Comment commentA = new Comment("First", user);				
 		post.addComment(commentA);
 		
-		Comment commentB = new Comment("Second");
+		Comment commentB = new Comment("Second", user);
 		post.addComment(commentB);
 		
 		

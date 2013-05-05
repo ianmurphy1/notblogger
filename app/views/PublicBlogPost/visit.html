@@ -50,9 +50,17 @@
       #{list items:post.comments, as:'comment'}
         <p>${comment.content}</p>
         <p class="date">
-          Left By ${comment.author}<br> ${comment.postedAt.since()}
+          #{if loggedInUser == comment.author}        
+            By You 
+          #{/if}
+          #{else}
+            Left By 
+                   
+          #{/else}
+        
+          
         </p>
-        #{if (loggedInUser && comment.author == loggedInUser.firstName)} 
+        #{if (loggedInUser && comment.author == loggedInUser)} 
               <a href="@{PublicBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini">Delete</a> 
             #{/if}
         <hr>
