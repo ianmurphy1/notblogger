@@ -16,7 +16,7 @@
     <h4>${post.title}</h4>
     <p class="date">
       ${post.postedAt.format('dd MMM yy')}
-      ${post.postedAt.format('hh:mm'}
+      ${post.postedAt.format('hh:mm')}
     </p>
     <p>${post.content}</p><hr>
     <div id="createcomment">
@@ -24,50 +24,50 @@
         <div class="control-group">
           <label class="control-label">Add A Comment</label><br>
           <div class="controls">
-            <textarea class="span4l" name="content" id="content"
-            placeholder="Enter Your Comment..."></textarea>
+            <textarea class="span4" name="content" id="content" placeholder="Enter Your Comment..."></textarea>
           </div>        
         </div>
         <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
         <button type="submit" class="btn btn-success">Add Comment</button>
       </form>
     </div>
-    #{if loggedInUser}
-    <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
-    <a href="@{PrivateBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a><hr>
     
-    <h5>Comments</h5>
-    #{if post.comments.size() > 0} 
-      #{list items:post.comments, as:'comment'}
-        <p>${comment.content}</p>
-          #{if comment.author == loggedInUser} 
-            <a href="@{PrivateBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a> 
-          #{/if}
-        <p class="date">
-          #{if comment.author == loggedInUser}
-            By You <br>
-          #{/if}
-          #{else}
-            Left By <a href="userprofile/${comment.author.id}">${comment.author}</a><br> 
-          #{/else}  
-          ${comment.postedAt.since()}
-        </p><hr>
-      #{/list} 
-    #{/if}    
-    #{else} 
-      There are no comments!! Why not be the first!
-    #{/else}
-    #{/if}
+      <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
+      <a href="@{PrivateBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward">  </i>Back to Blog</a><hr>
+    
+      <h5>Comments</h5>
+      #{if post.comments.size() > 0} 
+        #{list items:post.comments, as:'comment'}
+          <p>${comment.content}</p>
+            #{if comment.author == loggedInUser} 
+              <a href="@{PrivateBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a> 
+            #{/if}
+          <p class="date">
+            #{if loggedInUser == comment.author}
+              By You <br>
+            #{/if}
+            #{else}
+              Left By <a href="/userprofile/${comment.author.id}">${comment.author.firstName}</a><br> 
+            #{/else}  
+            ${comment.postedAt.since()}
+          </p><hr>
+        #{/list} 
+      #{/if}    
+      #{else} 
+        There are no comments!! Why not be the first!
+      #{/else}
+    
     #{if post.comments.size() > 10}
       <a href="@{PrivateBlog.visit(blog.id)}" class="clearbutton btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     #{/if}
   </div>  
 </div>
-
 <script src="@{'/public/javascripts/blogger.js'}"></script>
+
 <script>
     $("#createcomment").hide();
 </script>
+
 <script>
   $(document).ready(function() {
     loadPostEventHandlers();
