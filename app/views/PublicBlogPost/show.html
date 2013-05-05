@@ -1,12 +1,12 @@
 #{extends 'main.html' /} 
 #{set title:"Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-<li><a href="@{PublicBlog.show(blog.id)}">Back To Blog</a></li>
-<li class="active"><a href="#">Post: ${post.title}</a></li>
+  <li>                <a href="/home">            Home </a></li>
+  <li>                <a href="/subscriptions">   Subscriptions </a></li>
+  <li>                <a href="/members">         Members </a></li>
+  <li>                <a href="/homeprofile">     My Profile </a></li>
+  <li>                <a href="@{PublicBlog.show(blog.id)}">Back To Blog</a></li>
+  <li class="active"> <a href="#">Post: ${post.title}</a></li>
 </ul>
 #{include 'nav/close.html' /}
 
@@ -61,7 +61,7 @@
       No comments yet. 
     #{/else}
   </div>  
-  </div>
+</div>
   
   <script src="@{'/public/javascripts/blogger.js'}"></script>
 <script>

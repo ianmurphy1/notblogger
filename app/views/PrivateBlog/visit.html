@@ -1,15 +1,11 @@
 #{extends 'main.html' /}
 #{set title:"${blog.name} Blog by ${blog.author}" /}
-
 #{include 'nav/open.html' /}
-
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-
-</ul>
-                    
+  <li> <a href="/home">          Home          </a></li>
+  <li> <a href="/subscriptions"> Subscriptions </a></li>
+  <li> <a href="/members">       Members       </a></li>
+  <li> <a href="/homeprofile">   My Profile    </a></li>
+</ul>                    
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
@@ -21,11 +17,10 @@
       <a href="@{PrivateBlogPost.visit(post.id)}"> ${post.title} </a></br>
     </h4>
     <p class="date">On ${post.postedAt.format('dd MMM yy')} at
-      ${post.postedAt.format('hh:mm')}</p>
-    
+      ${post.postedAt.format('hh:mm')}
+    </p>
     <hr>
     #{/list}
-
   </div>
   #{/if} #{else}
   <p>There are no posts in this blog.</p>
@@ -34,8 +29,8 @@
 
 
 #{if loggedInUser}
-<a href="/userprofile/${user.id}" class="btn btn-success">Back To ${user.firstName}'s Profile</a>
+  <a href="/userprofile/${user.id}" class="btn btn-success">Back To ${user.firstName}'s Profile</a>
 #{/if}
 #{else}
-  <a href="/" class="btn btn-success">Back To Home</a>
+  <a href="/" class="btn btn-success"><i class="icon-home icon-white">  </i>  Back To Home</a>
 #{/else}

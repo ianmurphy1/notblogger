@@ -1,92 +1,73 @@
 #{extends 'main.html' /} 
 #{set title:"${user.firstName}'s Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-
+  <li>                <a href="/home">          Home           </a></li>
+  <li>                <a href="/subscriptions"> Subscriptions  </a></li>
+  <li>                <a href="/members">       Members        </a></li>
+  <li>                <a href="/homeprofile">   My Profile     </a></li>
+  <li>                <a href="@{PrivateBlog.visit(blog.id)}">Back To Blog</a></li>
+  <li class="active"> <a href="#">Post: ${post.title}</a></li>
 </ul>
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
   <div class="span6 well">
-  
     <img src="/homeprofile/getavatar/${user.id}" class="img-rounded pull-right"> 
-  
     <h4>${post.title}</h4>
-    <p class="date">${post.postedAt.format('dd MMM yy')}
-      ${post.postedAt.format('hh:mm')}</p>
-
-    <p>${post.content}</p>
-    <hr>
-    
+    <p class="date">
+      ${post.postedAt.format('dd MMM yy')}
+      ${post.postedAt.format('hh:mm'}
+    </p>
+    <p>${post.content}</p><hr>
     <div id="createcomment">
-   <form class="form" action="@{PrivateBlogPost.newVisitorComment(post.id)}" method="post">
-      <div class="control-group">
-        <label class="control-label">Add A Comment</label><br>
-        <div class="controls">
-          <textarea class="span4l" name="content" id="content"
+      <form class="form" action="@{PrivateBlogPost.newVisitorComment(post.id)}" method="post">
+        <div class="control-group">
+          <label class="control-label">Add A Comment</label><br>
+          <div class="controls">
+            <textarea class="span4l" name="content" id="content"
             placeholder="Enter Your Comment..."></textarea>
-        </div>        
-      </div>
-      <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
-      <button type="submit" class="btn btn-success">Add Comment</button>
-    </form>
-  </div>
-  #{if loggedInUser}
-  
+          </div>        
+        </div>
+        <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
+        <button type="submit" class="btn btn-success">Add Comment</button>
+      </form>
+    </div>
+    #{if loggedInUser}
     <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
-    <a href="@{PrivateBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
-    <hr>
-    
+    <a href="@{PrivateBlog.visit(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a><hr>
     
     <h5>Comments</h5>
     #{if post.comments.size() > 0} 
       #{list items:post.comments, as:'comment'}
         <p>${comment.content}</p>
-        #{if comment.author == loggedInUser} 
-              <a href="@{PrivateBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a> 
-        #{/if}
+          #{if comment.author == loggedInUser} 
+            <a href="@{PrivateBlogPost.deleteVisitorComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a> 
+          #{/if}
         <p class="date">
-        #{if comment.author == loggedInUser}
-          By You <br>
-        #{/if}
-        #{else}
-          Left By <a href="userprofile/${comment.author.id}">${comment.author}</a><br> 
-        #{/else}  
+          #{if comment.author == loggedInUser}
+            By You <br>
+          #{/if}
+          #{else}
+            Left By <a href="userprofile/${comment.author.id}">${comment.author}</a><br> 
+          #{/else}  
           ${comment.postedAt.since()}
-        </p>
-        
-        <hr>
+        </p><hr>
       #{/list} 
     #{/if}    
     #{else} 
       There are no comments!! Why not be the first!
     #{/else}
     #{/if}
-    
-      #{if post.comments.size() > 10}
+    #{if post.comments.size() > 10}
       <a href="@{PrivateBlog.visit(blog.id)}" class="clearbutton btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
-      #{/if}
+    #{/if}
   </div>  
-  </div>
-  
-
-
-
-    
 </div>
 
-
-    
-    
-    
-
-  <script src="@{'/public/javascripts/blogger.js'}"></script>
+<script src="@{'/public/javascripts/blogger.js'}"></script>
 <script>
     $("#createcomment").hide();
-  </script>
+</script>
 <script>
   $(document).ready(function() {
     loadPostEventHandlers();

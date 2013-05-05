@@ -14,13 +14,15 @@ import play.mvc.Controller;
 
 public class Start extends Controller {
 	public static void index() {
-		
-		List<User> users = User.findAll();
 				
-		List<Blog> publicBlogs = new ArrayList<Blog>();
+		if (session.contains("logged_in_userid")) {
+			Home.index();
+		}
+	
+		List<User> users = User.findAll();				
+		List<Blog> publicBlogs = new ArrayList<Blog>();	
 		
-		for (User user: users) {
-			
+		for (User user: users) {			
 			List<Blog> blogs = user.blogs;			
 			for (Blog blog: blogs) {
 				if (blog.isPublic) {

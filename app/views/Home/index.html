@@ -1,26 +1,20 @@
 #{extends 'main.html' /}
 #{set title:"Logged in as ${user.firstName} ${user.lastName}" /}
-#{include 'nav/open.html' /}
-        
-<li class="active"><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-
+#{include 'nav/open.html' /}        
+  <li class="active">    <a href="/home">            Home          </a></li>
+  <li>                   <a href="/subscriptions">   Subscriptions </a></li>
+  <li>                   <a href="/members">         Members       </a></li>
+  <li>                   <a href="/homeprofile">     My Profile    </a></li>
 </ul>
 
 <div class="btn-group pull-right">
-  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown"
-    href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
   <ul class="dropdown-menu pull-right">
-    <li><a href="/editprofile"> Edit Profile </a></li>
-    <li><a href="/logout"> Logout </a></li>
-    
+    <li> <a href="/editprofile">  Edit Profile   </a></li>
+    <li> <a href="/logout">       Logout         </a></li>
   </ul>
 </div>                    
 #{include 'nav/close.html' /}
-
-
 <div class="container">
   <div class="hero-unit hidden-phone">
     <h1>Welcome to NotBlogger ${user.firstName}</h1>
@@ -31,72 +25,81 @@
   </div>
   
   <div class="row">
-  <div id="createblog" class="well span5">
-    <form method="POST" action="/home/createblog">
-      <fieldset>
-        <div class="control-group">
-          <label class="control-label">Blog Name</label>
-          <div class="controls">
-            <input class="input-block-level" type="text" name="name" id="name" placeholder="Enter Blog Name"> 
+    <div id="createblog" class="well span5">
+      <form method="POST" action="/home/createblog">
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label">Blog Name</label>
+            <div class="controls">
+              <input class="input-block-level" type="text" name="name" id="name" placeholder="Enter Blog Name"> 
+            </div>
           </div>
-        </div>
         
-        <div class="controls">
-          <label class="checkbox" for="checkbox">
-          <input type="checkbox" value="true" id="isPublic" name="isPublic"> Public</label>                     
-        </div>
-        <div class="form-actions">
-          <button id="hideBlogCreator" class="btn" type="button">Cancel</button>  
-          <input class="btn btn-primary" type="submit" value="Create"> 
-        </div>
-      </fieldset>
-    </form>          
-  </div>
-  <script>
-    $("#createblog").hide();
-  </script>
+          <div class="controls">
+            <label class="checkbox" for="checkbox">
+            <input type="checkbox" value="true" id="isPublic" name="isPublic"> Public</label>                     
+          </div>
+          <div class="form-actions">
+            <button id="hideBlogCreator" class="btn" type="button">Cancel</button>  
+            <input class="btn btn-primary" type="submit" value="Create"> 
+          </div>
+        </fieldset>
+      </form>          
+    </div>
+    <script>
+      $("#createblog").hide();
+    </script>
   </div>
   
   <div class="row">
-  <div class="well span5">
+    <div class="well span5">  
+      <h4 class="align-center">Your Public Blogs</h4>
+        #{if publicBlogs.size > 0}
+          
+          
+          <table class="table table-striped table-bordered">
+            <th>Blog Name</th>
+            <th># Posts</th>
+            <th>Delete</th>   
+            #{list items:publicBlogs, as:'publicBlog'}
+            <tr>
+            <td><a href="@{PublicBlog.show(publicBlog.id)}">${publicBlog.name}</a></td>
+            <td>${publicBlog.posts.size()}</td>  
+            <td><a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-danger btn-mini">Delete ${publicBlog.name}</a></td>      
+            </tr>
+      #{/list}
+    </table>
+          
+          
+        #{/if}
+      #{else}
+        <p>You have no public blogs ${user.firstName}.</p>
+      #{/else}
+    </div>
   
-   <h4 class="align-center">Your Public Blogs</h4>
-    #{if publicBlogs.size > 0}
-    #{list items:publicBlogs, as:'publicBlog'}
-    <h5>
-      <a href="@{PublicBlog.show(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a>
-       
-    <a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-danger btn-mini pull-right">Delete ${publicBlog.name}</a>
-    </h5> 
-    <hr>
-    #{/list}
-    #{/if}
-    #{else}
-  <p>You have no public blogs ${user.firstName}.</p>
-  #{/else}
+    <div class="well span5 pull-right">
+      <h4 class="align-center">Your Private Blogs</h4>
+        #{if privateBlogs.size > 0}
+          <table class="table table-striped table-bordered">
+            <th>Blog Name</th>
+            <th># Posts</th>
+            <th>Delete</th>   
+            #{list items:privateBlogs, as:'privateBlog'}
+            <tr>
+            <td><a href="@{privateBlog.show(privateBlog.id)}">${privateBlog.name}</a></td>
+            <td>${privateBlog.posts.size()}</td>  
+            <td><a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-danger btn-mini">Delete ${privateBlog.name}</a></td>      
+            </tr>
+      #{/list}
+    </table>
+        #{/if}
+        #{else}
+          <p>
+            You have no Private Blogs ${user.firstName}.
+          </p>
+        #{/else}
+    </div>
   </div>
-  
-  <div class="well span5 pull-right">
-    <h4 class="align-center">Your Private Blogs</h4>
-    #{if privateBlogs.size > 0}
-    #{list items:privateBlogs, as:'privateBlog'}
-    <h5>
-      <a href="@{PrivateBlog.show(privateBlog.id)}">${privateBlog.name} (${privateBlog.posts.size()})</a>
-        
-       
-    <a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-danger btn-mini pull-right">Delete ${privateBlog.name}</a>
-   </h5>
-      <hr>
-    
-    #{/list}
-    #{/if}
-    #{else}
-       <p>
-         You have no Private Blogs ${user.firstName}.
-       </p>
-    #{/else}
-  </div>
-</div>
 </div>
 
 <script src="@{'/public/javascripts/blogger.js'}"></script>

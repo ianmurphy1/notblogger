@@ -1,16 +1,14 @@
 #{extends 'main.html' /}
 #{set title:"${blog.name} Blog by ${blog.author}" /}
-
 #{include 'nav/open.html' /}
 #{if loggedInUser}        
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-#{/if}
-<li class="active"><a href="#">Blog: ${blog.name}</a></li>
-</ul>
-                    
+  <li>                <a href="/home">           Home               </a></li>
+  <li>                <a href="/subscriptions">  Subscriptions      </a></li>
+  <li>                <a href="/members">        Members            </a></li>
+  <li>                <a href="/homeprofile">    My Profile         </a></li>
+#{/if} 
+  <li class="active"> <a href="#">               Blog: ${blog.name} </a></li>
+</ul>                    
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
@@ -38,5 +36,5 @@
 <a href="/userprofile/${user.id}" class="btn btn-success">Back To ${user.firstName}'s Profile</a>
 #{/if}
 #{else}
-  <a href="/" class="btn btn-success">Back To Home</a>
+  <a href="/" class="btn btn-success"><i class="icon-home icon-white">  </i>Back To Home</a>
 #{/else}

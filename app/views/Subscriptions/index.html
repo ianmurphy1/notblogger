@@ -1,32 +1,30 @@
 #{extends 'main.html' /}
 #{set title:"${user.firstName}'s Reading List" /}
 #{include 'nav/open.html' /}
-        
-<li><a href="/home"> Home </a></li>
-<li class="active"><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-
+  <li>                 <a href="/home">          Home          </a></li>
+  <li class="active">  <a href="/subscriptions"> Subscriptions </a></li>
+  <li>                 <a href="/members">       Members       </a></li>
+  <li>                 <a href="/homeprofile">   My Profile    </a></li>
 </ul>
-
 <div class="btn-group pull-right">
-  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown"
-    href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
+  <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown" href="#">
+    <i class="icon-user icon-white"></i><span class="caret"></span>
+  </a>
   <ul class="dropdown-menu pull-right">
-    <li><a href="/editprofile"> Edit Profile </a></li>
-    <li><a href="/logout"> Logout </a></li>
+    <li> <a href="/editprofile"> Edit Profile  </a></li>
+    <li> <a href="/logout">      Logout        </a></li>
   </ul>
 </div>                    
 #{include 'nav/close.html' /}
 <div class="row">
-<div class="well span5">
+  <div class="well span5">
     <h3>Subscriptions</h3>
-    
-       
     #{if user.subscribing.size() > 0}
     <table class=" table table-striped table-bordered table-hover">
-    <th>Name</th>
-    <th>Unsubscribe</th>    
+      <tr>
+        <th>Name</th>
+        <th>Unsubscribe</th>
+      <tr>    
       #{list items:user.subscribing, as:'subscribing'}
       <tr>
         <td><a href="userprofile/${subscribing.id}"> ${subscribing.firstName} ${subscribing.lastName} </a></td>
@@ -35,10 +33,10 @@
       #{/list}
     </table>
     #{/if}
-   
     #{else}
       You have no subscriptions at the moment ${user.firstName}.
       Visit the <a href="/members">Members</a> page to see who you can be 
       subscribing to.
     #{/else}
-  </div></div>
+  </div>
+</div>

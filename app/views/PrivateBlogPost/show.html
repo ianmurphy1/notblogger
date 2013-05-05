@@ -1,45 +1,40 @@
 #{extends 'main.html' /} 
 #{set title:"Blog Post: ${post.title}" /} 
 #{include 'nav/open.html' /}
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-<li><a href="@{PrivateBlog.show(blog.id)}">Back To Blog</a></li>
-<li class="active"><a href="#">Post: ${post.title}</a></li>
+  <li>                <a href="/home">          Home             </a></li>
+  <li>                <a href="/subscriptions"> Subscriptions    </a></li>
+  <li>                <a href="/members">       Members          </a></li>
+  <li>                <a href="/homeprofile">   My Profile       </a></li>
+  <li>                <a href="@{PrivateBlog.show(blog.id)}">Back To Blog</a></li>
+  <li class="active"> <a href="#">Post: ${post.title}</a></li>
 </ul>
 #{include 'nav/close.html' /}
-
- <div class="row">
+<div class="row">
   <div class="well span8">
-  
     <img src="/homeprofile/getavatar/${user.id}" class="img-rounded pull-right"> 
-  
     <h4>${post.title}</h4>
     <p class="date">
       ${post.postedAt.format('dd MMM yy')}<br> 
       At ${post.postedAt.format('hh:mm')} 
-
-    <p>${post.content}</p>
-    <hr>
+    </p>
+    <p>${post.content}</p><hr>
     <div id="createcomment">
-   <form class="form" action="@{PrivateBlogPost.newComment(post.id)}" method="post">
-      <div class="control-group">
-        <label class="control-label">Add A Comment</label><br>
-        <div class="controls">
-          <textarea class="span4" name="content" id="content"
+      <form class="form" action="@{PrivateBlogPost.newComment(post.id)}" method="post">
+        <div class="control-group">
+          <label class="control-label">Add A Comment</label><br>
+          <div class="controls">
+            <textarea class="span4" name="content" id="content"
             placeholder="Enter Your Comment..."></textarea>
-        </div>        
-      </div>
-      <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
-      <button type="submit" class="btn btn-success">Add Comment</button>
-    </form>
-  </div>
+          </div>        
+        </div>
+        <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
+        <button type="submit" class="btn btn-success">Add Comment</button>
+      </form>
+    </div>
     <button id="showCommentCreator" class="btn btn-primary" type="button">Add Comment</button><br>
     <a href="@{PrivateBlog.show(blog.id)}" class="btn btn-primary"><i class="icon-backward"></i>  Back to Blog </a>
     <hr>
-    
-    <div class="comments">
+          
     <h5>Comments</h5>
     #{if post.comments.size() > 0} 
       #{list items:post.comments, as:'comment'}
@@ -60,9 +55,8 @@
     #{else} 
       No comments yet. 
     #{/else}
-    </div>
   </div>  
-  </div>
+</div>
   
   <script src="@{'/public/javascripts/blogger.js'}"></script>
 <script>

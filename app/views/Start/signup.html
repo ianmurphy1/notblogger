@@ -1,16 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Sign Up to NotBlogger' /}
 #{include 'nav/open.html' /}
-<li><a href="/">Main</a></li>
-<li><a href="/login">Login</a></li>
-<li class="active"><a href="/signup">Signup</a></li>
+  <li>                <a href="/">        Main    </a></li>
+  <li>                <a href="/login">   Login   </a></li>
+  <li class="active"> <a href="/signup">  Signup  </a></li>
 </ul>
 #{include 'nav/close.html' /}
-
 <div class="row">
-<div class="well span4">
+  <div class="well span4">
     <h1>Sign Up to NotBlogger</h1>
-    <form method="post" action="/register">
+    <form method="post" action="/register" id="register_form">
       <hr>
       <fieldset>
         <div class="control-group">

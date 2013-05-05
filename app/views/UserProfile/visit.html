@@ -1,44 +1,45 @@
 #{extends 'main.html' /}
 #{set title:"User Profile for ${user.firstName}" /}
-#{include 'nav/open.html' /}
-        
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-
-</ul>
-                   
+#{include 'nav/open.html' /}        
+  <li>  <a href="/home">           Home           </a></li>
+  <li>  <a href="/subscriptions">  Subscriptions  </a></li>
+  <li>  <a href="/members">        Members        </a></li>
+  <li>  <a href="/homeprofile">    My Profile     </a></li>
+</ul>                   
 #{include 'nav/close.html' /}
-
 <div class="container">
   <div class="row">
     <div class="well span5">
       <h3>${user.firstName}'s Info</h3>
       <hr>
       <p>
-        <strong>Profile Picture</strong>
-        <br>
+        <strong>Profile Picture</strong><br>
         <img src="/homeprofile/getpicture/${user.id}" class="img-rounded"> 
       </p>
       <hr>
       <p></p>
       <p>
-        <strong>Visitor Message</strong>
-        <br> ${user.visitorMessage}</p>
-      <hr>
-      <hr> 
+        <strong>Visitor Message</strong><br>
+        ${user.visitorMessage}
+      </p>
     </div>
   </div>
   <div class="row">
     <div class="span5 well">
       <h4>Public Blogs</h4>
       #{if publicBlogs.size > 0}
-        #{list items: publicBlogs, as:'publicBlog'}
-          <h5>
-            <a href="@{PublicBlog.visit(publicBlog.id)}"> ${publicBlog.name} (${publicBlog.posts.size()})</a></br>
-          </h5> 
-        #{/list}
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Blog Name</th>
+            <th># Posts</th>
+          </tr>     
+          #{list items:publicBlogs, as:'publicBlog'}
+          <tr>
+            <td><a href="@{publicBlog.visit(publicBlog.id)}">${publicBlog.name}</a></td>
+            <td>${publicBlog.posts.size()}</td>  
+          </tr>
+          #{/list}
+        </table>
       #{/if}
       #{else}
         <p>
@@ -49,11 +50,18 @@
     <div class="well pull-right span5">
       <h4>Private Blogs</h4>
       #{if (isSubscribing && privateBlogs.size > 0)}
-        #{list items: privateBlogs, as:'privateBlog'}
-          <h5>
-            <a href="@{PrivateBlog.visit(privateBlog.id)}"> ${privateBlog.name} (${privateBlog.posts.size()})</a></br>
-          </h5> 
-        #{/list}
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Blog Name</th>
+            <th># Posts</th>
+          </tr>              
+          #{list items:privateBlogs, as:'privateBlog'}
+          <tr>
+            <td><a href="@{privateBlog.visit(privateBlog.id)}">${privateBlog.name}</a></td>
+            <td>${privateBlog.posts.size()}</td>  
+          </tr>
+          #{/list}
+        </table>
       #{/if}
       #{elseif !isSubscribing}
         <p>
@@ -67,5 +75,5 @@
       #{/else}
     </div>
   </div>
-  <a href="/home" class="btn btn-success">Back Home</a>
+  <a href="/home" class="btn btn-success"><i class="icon-home icon-white">  </i>  Back Home</a>
 </div>

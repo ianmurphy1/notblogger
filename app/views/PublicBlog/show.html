@@ -1,18 +1,13 @@
 #{extends 'main.html' /}
 #{set title:"${blog.name} Blog" /}
-
-#{include 'nav/open.html' /}
-        
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-<li class="active"><a href="#">Blog: ${blog.name}</a></li>
+#{include 'nav/open.html' /}        
+  <li>                <a href="/home">          Home               </a></li>
+  <li>                <a href="/subscriptions"> Subscriptions      </a></li>
+  <li>                <a href="/members">       Members            </a></li>
+  <li>                <a href="/homeprofile">   My Profile         </a></li>
+  <li class="active"> <a href="#">              Blog: ${blog.name} </a></li>
 </ul>
-
-                    
 #{include 'nav/close.html' /}
-
 <div class="row-fluid">
   #{if posts.size > 0}
   <div id ="content" class="well span8">
@@ -62,10 +57,9 @@
   </form>
 </div>
 <p>
-    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
-  </p>
-<a href="/home" class="btn btn-success">Back Home</a>
-
+  <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+</p>
+<a href="/home" class="btn btn-success"><i class="icon-home icon-white">  </i>Back Home</a>
 <script src="@{'/public/javascripts/blogger.js'}"></script>
 
 <script>

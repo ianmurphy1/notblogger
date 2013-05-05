@@ -1,13 +1,11 @@
 #{extends 'main.html' /}
 #{set title:"${blog.name} Blog" /}
 #{include 'nav/open.html' /}
-        
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li> <a href="/members">     Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
-</ul>
-                   
+  <li>   <a href="/home">            Home           </a></li>
+  <li>   <a href="/subscriptions">   Subscriptions  </a></li>
+  <li>   <a href="/members">         Members        </a></li>
+  <li>   <a href="/homeprofile">     My Profile     </a></li>
+</ul>                   
 #{include 'nav/close.html' /}
 
 <div class="row-fluid">
@@ -26,10 +24,10 @@
     #{/list}
 
   </div>
-  #{/if} #{else}
-  <p>To add a post to ${blog.name} click the button bellow</p>
-  #{/else}
-  
+  #{/if} 
+  #{else}
+    <p>To add a post to ${blog.name} click the button bellow</p>
+  #{/else} 
 </div>
 
 <div id="createpost" class="row-fluid">
@@ -59,9 +57,9 @@
   </form>
 </div>
 <p>
-    <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
-  </p>
-<a href="/home" class="btn btn-success">Back Home</a>
+  <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+</p>
+  <a href="/home" class="btn btn-success">Back Home</a>
 
 <script src="@{'/public/javascripts/blogger.js'}"></script>
 

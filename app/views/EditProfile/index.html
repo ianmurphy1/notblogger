@@ -1,18 +1,17 @@
 #{extends 'main.html' /}
 #{set title:'Profile Settings' /}
 #{include 'nav/open.html' /}
-        
-<li><a href="/home"> Home </a></li>
-<li><a href="/subscriptions"> Subscriptions </a></li>
-<li><a href="/members"> Members </a></li>
-<li><a href="/homeprofile"> My Profile </a></li>
+<li>  <a href="/home">          Home          </a></li>
+<li>  <a href="/subscriptions"> Subscriptions </a></li>
+<li>  <a href="/members">       Members       </a></li>
+<li>  <a href="/homeprofile">   My Profile    </a></li>
 </ul>
 
 <div class="btn-group pull-right">
   <a class="btn btn-small dropdown-toggle btn-inverse" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i><span class="caret"></span></a>
   <ul class="dropdown-menu pull-right">
-    <li><a href="/editprofile"> Edit Profile </a></li>
-    <li><a href="/logout"> Logout </a></li>    
+    <li> <a href="/editprofile">  Edit Profile </a></li>
+    <li> <a href="/logout">       Logout       </a></li>    
   </ul>
 </div>                    
 #{include 'nav/close.html' /}
@@ -59,7 +58,8 @@
         <input class="btn btn-primary" type="submit" value="Update Age" />
       </div>
     </fieldset>
-  </form></div>
+  </form>
+</div>
  
 <div class="row">
   <form class="form well span4" method="post"
