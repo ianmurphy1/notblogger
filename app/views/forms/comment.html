@@ -1,0 +1,12 @@
+<form class="form" action="@{PublicBlogPost.newComment(post.id)}" method="post">
+      <div class="control-group">
+        <label class="control-label">Add A Comment</label><br>
+        <div class="controls">
+          <textarea class="span4" name="content" id="content"
+            placeholder="Enter Your Comment..."></textarea>
+        </div>        
+      </div>
+      
+      <button id="hideCommentCreator" class="btn btn-warning" type="button">Cancel</button> 
+      <button type="submit" class="btn btn-success">Add Comment</button>      
+    </form>
