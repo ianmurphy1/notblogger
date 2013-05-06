@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:"${blog.name} Blog" /}
+#{include 'nav/open.html' /}
+#{if loggedInUser}      
+  <li>                <a href="/home">          Home               </a></li> 
+  <li>                <a href="/subscriptions"> Subscriptions      </a></li>
+  <li>                <a href="/members">       Members            </a></li>
+  <li>                <a href="/homeprofile">   My Profile         </a></li>
+#{/if}
+  <li class="active"> <a href="#">              Blog: ${blog.name} </a></li>
+</ul>
+#{include 'nav/close.html' /}
+<div class="row-fluid">
+  #{if posts.size > 0}
+  <div id ="content" class="well span8">
+    <h3>${blog.name} Posts</h3>
+    #{list items:blog.posts, as:'post'}
+    <h4>
+      <a href="@{PublicBlogPost.show(post.id)}"> ${post.title} </a></br>
+      #{if (loggedInUser && loggedInUser == blog.author)}
+      <a href="@{BlogView.deletePost(post.id)}" class="btn btn-mini btn-danger pull-right">Delete ${post.title}</a>
+      #{/if}
+    </h4>
+    <p class="date">Created: ${post.postedAt.format('dd MMM yy')} at
+      ${post.postedAt.format('hh:mm')}</p>
+    
+    <hr>
+    #{/list}
+
+  </div>
+  #{/if} 
+  #{elseif (posts.size == 0 && loggedInUser)}
+     <p>To add a post to ${blog.name} click the button bellow</p>
+  #{/elseif}
+  #{else}
+    ${blog.author.firstName} has no posts in this blog yet!   
+  #{/else}
+</div>
+#{if (loggedInUser && loggedInUser == blog.author)}
+#{include 'forms/post.html' /}
+#{/if}
+
+#{include 'buttons/homebutton.html' /}  
+
+
+<script src="@{'/public/javascripts/blogger.js'}"></script>
+<script>
+  $("#createpost").hide();
+  $(document).ready(function() {
+    loadBlogEventHandlers();
+  });     
+</script>

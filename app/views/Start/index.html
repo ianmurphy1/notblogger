@@ -27,7 +27,7 @@
     #{list items:showThese, as:'blog'}
     <tr>
       <td>${blog.author.firstName}</td>            
-      <td><a href="@{PublicBlog.visit(blog.id)}">${blog.name}</a></td>
+      <td><a href="@{BlogView.show(blog.id)}">${blog.name}</a></td>
       <td>${blog.posts.size()}</td>                   
     </tr>
     #{/list}

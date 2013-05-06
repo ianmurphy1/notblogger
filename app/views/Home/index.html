@@ -63,7 +63,7 @@
             <th>Delete</th>   
             #{list items:publicBlogs, as:'publicBlog'}
             <tr>
-            <td><a href="@{PublicBlog.show(publicBlog.id)}">${publicBlog.name}</a></td>
+            <td><a href="@{BlogView.show(publicBlog.id)}">${publicBlog.name}</a></td>
             <td>${publicBlog.posts.size()}</td>  
             <td><a href="@{Home.deleteBlog(publicBlog.id)}" class="btn btn-danger btn-mini">Delete ${publicBlog.name}</a></td>      
             </tr>
@@ -86,7 +86,7 @@
             <th>Delete</th>   
             #{list items:privateBlogs, as:'privateBlog'}
             <tr>
-            <td><a href="@{privateBlog.show(privateBlog.id)}">${privateBlog.name}</a></td>
+            <td><a href="@{BlogView.show(privateBlog.id)}">${privateBlog.name}</a></td>
             <td>${privateBlog.posts.size()}</td>  
             <td><a href="@{Home.deleteBlog(privateBlog.id)}" class="btn btn-danger btn-mini">Delete ${privateBlog.name}</a></td>      
             </tr>

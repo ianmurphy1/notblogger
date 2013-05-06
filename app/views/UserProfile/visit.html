@@ -35,7 +35,7 @@
           </tr>     
           #{list items:publicBlogs, as:'publicBlog'}
           <tr>
-            <td><a href="@{publicBlog.visit(publicBlog.id)}">${publicBlog.name}</a></td>
+            <td><a href="@{BlogView.show(publicBlog.id)}">${publicBlog.name}</a></td>
             <td>${publicBlog.posts.size()}</td>  
           </tr>
           #{/list}

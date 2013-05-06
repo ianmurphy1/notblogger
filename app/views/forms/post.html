@@ -1,0 +1,29 @@
+<div id="createpost" class="row-fluid">
+  <form id="newpost" class="form well span7" method="post" action="@{BlogView.newPost(posttitle, content, blog.id)}">
+    <fieldset>
+      <legend>Create New Post</legend>
+      <div class="control-groweup">
+        <label class="control-label">Title</label><br>
+        <div class="controls">
+          <textarea name="posttitle" class="field span11" rows="1"
+            placeholder="Blog Title..."></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Post Content</label>
+        <div class="controls">
+          <textarea name="content" class="field span11" rows="8"
+            placeholder="Your ramblings..."></textarea>
+          <br>
+        </div>
+      </div>
+      <div class="form-actions">
+      <button id="hidePostCreator" class="btn" type="button">Cancel</button> 
+        <input class="btn btn-primary" type="submit" value="Post Blog" />
+      </div>
+    </fieldset>
+  </form>
+</div>
+<p>
+  <button id="showPostCreator" class="btn btn-primary" type="button">Create New Post</button><br>
+</p>
