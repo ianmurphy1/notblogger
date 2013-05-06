@@ -39,9 +39,9 @@
       #{list items:post.comments, as:'comment'}
         <p>${comment.content}</p>
         <p class="date">
-          #{if comment.author == loggedInUser || blog.author == loggedInUser}
-          <a href="@{PublicBlogPost.deleteComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a>
-          Left By You <br> 
+          #{if (comment.author == loggedInUser || blog.author == loggedInUser)}
+            <a href="@{PublicBlogPost.deleteComment(comment.id)}" class="btn btn-mini btn-danger pull-right">Delete</a>
+            Left By You <br> 
           #{/if}
           #{else}
             Left By <a href="/userprofile/${comment.author.id}">${comment.author.firstName}</a> <br>
